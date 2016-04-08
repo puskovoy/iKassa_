@@ -110,8 +110,8 @@ function hideLogo() {
         $.ajax({
             type: 'GET',
             url: 'http://localhost:8080/web',
-            dataType: "json",
-            data: {},
+            dataType: "json",//если подставить html тогда success: function (data) - выполнится.
+            data: ({name:'start',number:5}),
 
             success: function (data) {
                 console.log("test3");
@@ -120,12 +120,13 @@ function hideLogo() {
                 console.log(sht.admin);
             }
         });
-    };
+    }
 
     testAjax(function testHTML() {
-        $("#information2").html(sht.admin);
+        console.log("test4");
+        $("#information2").html("success");
     });
-};
+}
 function showLogo() {
     /* $.fancybox.close();*/
     $(".logo").show();
@@ -136,66 +137,3 @@ function showLogo() {
 
 }
 
-function allall() {
-    var sht;
-
-    function respoajax(callback) {
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/MyServletAll',
-            dataType: "json",
-            data: {},
-
-            success: function (data) {
-                sht = JSON.parse(JSON.stringify(data));
-                callback(data);
-                console.log(sht.name);
-            }
-        });
-    };
-    respoajax(function allhtml() {
-
-        for (var i = 0; i < sht.count; i++) {
-            var row = "<tr ><td>" + sht.name[i] + "</td><td>" + sht.number[i] + "</td><td>" + sht.quad[i] + "</td><td>" + sht.thick[i] + "</td><td>" + sht.material[i] + "</td><td>" + sht.densities[i] + "</td><td>" + sht.price[i] + "</td></tr>";
-            $('#bodyTabl').append(row);
-        }
-
-    });
-};
-//этот скрипт выводит таблицу
-function calcPrice() {
-    var name = document.getElementById("name").value;
-    var number = document.getElementById("number").value;
-    var quad = document.getElementById("quad").value;
-    var thick = document.getElementById("thick").value;
-    var density = document.getElementById("density").value;
-    var gridRadios = document.getElementById("gridRadios").value;
-    var sht;
-
-
-    function respoajax(callback) {
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/MyServlet',
-            dataType: "json",
-            data: {
-                name: name,
-                number: number,
-                quad: quad,
-                thick: thick,
-                density: density,
-                gridRadios: gridRadios
-            },
-            success: function (data) {
-                sht = JSON.parse(JSON.stringify(data))
-                callback(data);
-                console.log(sht.price);
-            }
-        });
-    };
-    respoajax(function allhtml() {
-        $('#price').html(sht.price + 'грн');
-        $('#myModal').modal('show');
-    });
-
-};

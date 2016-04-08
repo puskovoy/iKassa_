@@ -25,7 +25,7 @@ public class ServletLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
+        JSONObject resultJson = new JSONObject();
 
         PrintWriter out = resp.getWriter();
 
@@ -35,17 +35,11 @@ public class ServletLogin extends HttpServlet {
         System.out.println("doGet");
         System.out.println(s + " " + n);
 
-        resp.setContentType("application/json");
 
-        /*resultJson.put("admin", "foo");
-        out.println(resultJson);*/
+        resultJson.put("admin", "fort");
+        out.println(resultJson);
         out.close();
 
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
     }
 }

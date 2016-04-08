@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1697679670">
-    <data-source source="LOCAL" name="MySQL - ikassa@localhost" uuid="4bc36f57-ceca-486e-bdb8-5d74cc87449b">
+  <component name="DataSourceManagerImpl" format="xml" hash="672692687">
+    <data-source source="LOCAL" name="iKassa/Hibernate" uuid="76001bdf-253a-4640-ba7b-1b08f159442b">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/ikassa</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/iKassa</jdbc-url>
+      <explain-plan-config>
+        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
+      </explain-plan-config>
       <driver-properties>
+        <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
         <property name="characterEncoding" value="utf8" />
