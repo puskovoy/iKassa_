@@ -32,7 +32,6 @@ $(document).ready(function () {
         } else if (direction === "up") {
             $(".class").removeClass("deactive");
         }
-        ;
     }, {offset: 100});
 
     //Плавный скролл до блока .div по клику на .scroll
@@ -109,7 +108,7 @@ function hideLogo() {
         console.log("test2");
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/web',
+            url: 'http://localhost:8080/login',
             dataType: "json",//если подставить html тогда success: function (data) - выполнится.
             data: ({name:'start',number:5}),
 
@@ -124,7 +123,7 @@ function hideLogo() {
 
     testAjax(function testHTML() {
         console.log("test4");
-        $("#information2").html("success");
+        $("#information2").html(sht.admin);
     });
 }
 function showLogo() {

@@ -18,13 +18,14 @@ import java.util.List;
 /**
  * Created by Shevtsov on 028 28.03.16.
  */
-@WebServlet("/web")
+@WebServlet("/login")
 public class ServletLogin extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        User user = new User();
         JSONObject resultJson = new JSONObject();
 
         PrintWriter out = resp.getWriter();
