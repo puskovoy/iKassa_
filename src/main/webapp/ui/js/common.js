@@ -92,17 +92,40 @@ $(document).ready(function () {
         return false;
     });
 
+
 });
 
 function hideLogo() {
-   /* $.fancybox.close();*/
+    var sht;
+    /* $.fancybox.close();*/
     $(".logo").hide();
     $(".top_contacts").hide();
     $(".slider_container").hide();
     $(".order").hide();
     $(".blog_item").hide();
+    console.log("test");
 
-}
+    function testAjax(callback) {
+        console.log("test2");
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/web',
+            dataType: "json",
+            data: {},
+
+            success: function (data) {
+                console.log("test3");
+                sht = JSON.parse(JSON.stringify(data));
+                callback(data);
+                console.log(sht.admin);
+            }
+        });
+    };
+
+    testAjax(function testHTML() {
+        $("#information2").html(sht.admin);
+    });
+};
 function showLogo() {
     /* $.fancybox.close();*/
     $(".logo").show();
@@ -126,14 +149,14 @@ function allall() {
             success: function (data) {
                 sht = JSON.parse(JSON.stringify(data));
                 callback(data);
-
+                console.log(sht.name);
             }
         });
     };
     respoajax(function allhtml() {
 
         for (var i = 0; i < sht.count; i++) {
-            var row ="<tr ><td>"+sht.name[i]+"</td><td>"+sht.number[i]+"</td><td>"+sht.quad[i]+"</td><td>" +sht.thick[i]+"</td><td>"+sht.material[i]+"</td><td>"+sht.densities[i]+"</td><td>"+sht.price[i]+"</td></tr>";
+            var row = "<tr ><td>" + sht.name[i] + "</td><td>" + sht.number[i] + "</td><td>" + sht.quad[i] + "</td><td>" + sht.thick[i] + "</td><td>" + sht.material[i] + "</td><td>" + sht.densities[i] + "</td><td>" + sht.price[i] + "</td></tr>";
             $('#bodyTabl').append(row);
         }
 

@@ -3,6 +3,7 @@ package com.iKassa.servlets;
 import com.iKassa.entity.User;
 import com.iKassa.util.CrudCar;
 import com.iKassa.util.CrudUser;
+import org.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,36 +24,23 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CrudUser userFromDB = new CrudUser();
+
+
 
         PrintWriter out = resp.getWriter();
+
+        String s = req.getParameter("name");
+        String n = req.getParameter("number");
+
         System.out.println("doGet");
+        System.out.println(s + " " + n);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("index.html");
-        requestDispatcher.forward(req, resp);
+        resp.setContentType("application/json");
 
-        out.println("<h2>Привет Servlet doGet</h2><br> Again");
-        List<User> users = userFromDB.getAll();
-
-        //Выводим полученый список авто
-        for(User c : users){
-            out.println(c);
-        }
+        /*resultJson.put("admin", "foo");
+        out.println(resultJson);*/
         out.close();
 
-        /*RequestDispatcher rd = req.getRequestDispatcher(MAIN_PAGE);
-        rd.forward(req, resp);*/
-        /*LoginBean bean = new LoginBean();
-
-        boolean status = bean.validate(name, password);
-
-        if (status) {
-            RequestDispatcher rd = req.getRequestDispatcher(MAIN_PAGE);
-            rd.forward(req, resp);
-        } else {
-            RequestDispatcher rd = req.getRequestDispatcher(TEST_PAGE);
-            rd.forward(req, resp);
-        }*/
 
     }
 
