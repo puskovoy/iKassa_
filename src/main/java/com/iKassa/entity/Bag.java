@@ -6,8 +6,8 @@ import javax.persistence.*;
  * Created by User on 029 29.02.16.
  */
 @Entity
-@Table(name="bags")
-@NamedQuery(name="BAG.getAll", query="SELECT c from Bag c")
+@Table(name = "bags")
+@NamedQuery(name = "BAG.getAll", query = "SELECT c from Bag c")
 public class Bag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,6 +16,8 @@ public class Bag {
     private int number;
     @Column(name = "isFull")
     private int isFull;
+    @Column(name = "route")
+    private int route;
 
     public Bag(int number, int isFull) {
         this.number = number;
@@ -47,5 +49,22 @@ public class Bag {
 
     public void setIsFull(int isFull) {
         this.isFull = isFull;
+    }
+
+    public int getRoute() {
+        return route;
+    }
+
+    public void setRoute(int route) {
+        this.route = route;
+    }
+
+    @Override
+    public String toString() {
+        return "Bag{" +
+                "id=" + id +
+                ", number=" + number +
+                ", isFull=" + isFull +
+                '}';
     }
 }

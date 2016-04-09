@@ -1,13 +1,14 @@
 package com.iKassa.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by User on 021 21.02.16.
  */
 @Entity
-@Table(name="inkassators")
-@NamedQuery(name="INKASSATOR.getAll", query="SELECT c from Inkassator c")
+@Table(name = "inkassators")
+@NamedQuery(name = "INKASSATOR.getAll", query = "SELECT c from Inkassator c")
 public class Inkassator {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,20 +17,10 @@ public class Inkassator {
     private String name;
     @Column(name = "age")
     private String age;
-    @Column(name = "bag")
-    private int bag;
     @Column(name = "route")
     private int route;
     @Column(name = "card")
     private int card;
-
-    public Inkassator(String name, String age, int bag, int route, int card) {
-        this.name = name;
-        this.age = age;
-        this.bag = bag;
-        this.route = route;
-        this.card = card;
-    }
 
     public Inkassator() {
     }
@@ -58,14 +49,6 @@ public class Inkassator {
         this.age = age;
     }
 
-    public int getBag() {
-        return bag;
-    }
-
-    public void setBag(int bag) {
-        this.bag = bag;
-    }
-
     public int getRoute() {
         return route;
     }
@@ -88,7 +71,6 @@ public class Inkassator {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age='" + age + '\'' +
-                ", bag=" + bag +
                 ", route=" + route +
                 ", card=" + card +
                 '}';

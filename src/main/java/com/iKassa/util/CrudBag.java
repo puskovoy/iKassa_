@@ -1,7 +1,6 @@
 package com.iKassa.util;
 
 import com.iKassa.entity.Bag;
-import com.iKassa.entity.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;

@@ -1,8 +1,10 @@
 package com.iKassa.testing;
 
 import com.iKassa.entity.Car;
+import com.iKassa.entity.Inkassator;
 import com.iKassa.entity.User;
 import com.iKassa.util.CrudCar;
+import com.iKassa.util.CrudInkassator;
 import com.iKassa.util.CrudUser;
 import org.junit.Test;
 
@@ -14,7 +16,8 @@ import java.util.List;
  */
 public class CarTest {
     CrudCar service = new CrudCar();
-    CrudUser service1 = new CrudUser();
+    CrudUser serviceUser = new CrudUser();
+    CrudInkassator serviceInkassator = new CrudInkassator();
 
     @Test
     public void testSaveRecord() throws Exception {
@@ -30,7 +33,22 @@ public class CarTest {
         //Вывели записанную в БД запись
         System.out.println(car);
     }
+    
+    @Test
+    public void testSaveRecordInkassator() throws Exception {
+        //Создаем автомобиль для записи в БД
+        Inkassator inkassator1 = new Inkassator();
+        inkassator1.setName("Anton");
+        inkassator1.setAge("25");
+        inkassator1.setRoute(4);
+        inkassator1.setCard(230);
 
+        //Записали в БД
+        Inkassator inkassator = serviceInkassator.add(inkassator1);
+
+        //Вывели записанную в БД запись
+        System.out.println(inkassator);
+    }
     @Test
     public void testDeleteRecord() throws Exception {
         //Создаем автомобиль для записи в БД
@@ -84,31 +102,31 @@ public class CarTest {
         System.out.println(car2);
     }
     @Test
-    public void testGetAll(){
+    public void testGetAllUser(){
         //Создаем автомобиль для записи в БД
-        User car1 = new User();
-        car1.setName("Lexus");
-        car1.setPassword("admin");
+        User user1 = new User();
+        user1.setName("Tom");
+        user1.setPassword("admin");
 
         //Создаем автомобиль для записи в БД
-        User car2 = new User();
-        car2.setName("Fiat");
-        car2.setPassword("taz");
+        User user2 = new User();
+        user2.setName("Bob");
+        user2.setPassword("taz");
 
         //Создаем автомобиль для записи в БД
-        User car3 = new User();
-        car3.setName("Porsche");
-        car3.setPassword("tuz");
+        User user3 = new User();
+        user3.setName("Gary");
+        user3.setPassword("tuz");
 
         //Сохраняем все авто
-        service1.add(car1);
-        service1.add(car2);
-        service1.add(car3);
+        serviceUser.add(user1);
+        serviceUser.add(user2);
+        serviceUser.add(user3);
         //Получаем все авто с БД
-        List<User> cars = service1.getAll();
+        List<User> users = serviceUser.getAll();
 
         //Выводим полученый список авто
-        for(User c : cars){
+        for(User c : users){
             System.out.println(c);
         }
     }

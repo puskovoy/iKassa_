@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="672692687">
+  <component name="DataSourceManagerImpl" format="xml" hash="3246957280">
     <data-source source="LOCAL" name="iKassa/Hibernate" uuid="76001bdf-253a-4640-ba7b-1b08f159442b">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

@@ -116,14 +116,14 @@ function hideLogo() {
                 console.log("test3");
                 sht = JSON.parse(JSON.stringify(data));
                 callback(data);
-                console.log(sht.admin);
+                console.log(sht.user.name);
             }
         });
     }
 
     testAjax(function testHTML() {
         console.log("test4");
-        $("#information2").html(sht.admin);
+        $("#information2").html(sht.user);
     });
 }
 function showLogo() {

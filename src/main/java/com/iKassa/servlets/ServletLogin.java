@@ -1,7 +1,6 @@
 package com.iKassa.servlets;
 
 import com.iKassa.entity.User;
-import com.iKassa.util.CrudCar;
 import com.iKassa.util.CrudUser;
 import org.json.JSONObject;
 
@@ -21,11 +20,9 @@ import java.util.List;
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        User user = new User();
+        CrudUser userFromDB = new CrudUser();
         JSONObject resultJson = new JSONObject();
 
         PrintWriter out = resp.getWriter();
@@ -36,11 +33,16 @@ public class ServletLogin extends HttpServlet {
         System.out.println("doGet");
         System.out.println(s + " " + n);
 
+        userFromDB.getAll();
+        //Получаем все авто с БД
+        List<User> users = userFromDB.getAll();
 
-        resultJson.put("admin", "fort");
+        //Выводим полученый список авто
+        for(User c : users){
+            resultJson.put("user", c.getName());
+        }
+
         out.println(resultJson);
         out.close();
-
-
     }
 }

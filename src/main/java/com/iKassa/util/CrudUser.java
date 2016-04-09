@@ -1,6 +1,5 @@
 package com.iKassa.util;
 
-import com.iKassa.entity.Car;
 import com.iKassa.entity.User;
 
 import javax.persistence.EntityManager;

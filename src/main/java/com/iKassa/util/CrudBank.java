@@ -1,6 +1,6 @@
 package com.iKassa.util;
 
-import com.iKassa.entity.Client;
+import com.iKassa.entity.Bank;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -8,14 +8,14 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * Created by Shevtsov on 027 27.03.16.
+ * Created by Shevtsov on 08.04.2016.
  */
-public class CrudClient {
+public class CrudBank {
     public EntityManager em = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
 
-    public Client add(Client client){
+    public Bank add(Bank bank){
         em.getTransaction().begin();
-        Client carFromDB = em.merge(client);
+        Bank carFromDB = em.merge(bank);
         em.getTransaction().commit();
         return carFromDB;
     }
@@ -26,19 +26,19 @@ public class CrudClient {
         em.getTransaction().commit();
     }
 
-    public Client get(long id){
-        return em.find(Client.class, id);
+    public Bank get(long id){
+        return em.find(Bank.class, id);
     }
 
-    public void update(Client user){
+    public void update(Bank car){
         em.getTransaction().begin();
-        em.merge(user);
+        em.merge(car);
         em.getTransaction().commit();
         em.close();
     }
 
-    public List<Client> getAll(){
-        TypedQuery<Client> namedQuery = em.createNamedQuery("CLIENT.getAll", Client.class);
+    public List<Bank> getAll(){
+        TypedQuery<Bank> namedQuery = em.createNamedQuery("CAR.getAll", Bank.class);
         return namedQuery.getResultList();
     }
 }

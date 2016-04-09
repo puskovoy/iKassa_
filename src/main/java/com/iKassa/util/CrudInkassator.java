@@ -1,6 +1,5 @@
 package com.iKassa.util;
 
-import com.iKassa.entity.Bag;
 import com.iKassa.entity.Inkassator;
 
 import javax.persistence.EntityManager;
