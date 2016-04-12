@@ -2,18 +2,17 @@ package com.iKassa.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by User on 021 21.02.16.
  */
 @Entity
-@Table(name="cars")
-@NamedQuery(name="CAR.getAll", query="SELECT c from Car c")
-public class Car {
+@Table(name = "cars")
+@NamedQuery(name = "CAR.getAll", query = "SELECT c from Car c")
+public class Car extends Model{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
     @Column(name = "number", length = 10)
     private String number;
     @Column(name = "name", length = 50)
@@ -22,6 +21,11 @@ public class Car {
     private float cost;
     @Column(name = "releaseDate", length = 50)
     private Date releaseDate;
+    @ManyToMany
+    @JoinTable(name="inkassator_car",
+            joinColumns = @JoinColumn(name="inkassator_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name="Car_id", referencedColumnName="id"))
+    private Set<Inkassator> inkassatorSet = new HashSet<Inkassator>();
 
     public Car(String number, String name) {
         this.number = number;
@@ -29,14 +33,6 @@ public class Car {
     }
 
     public Car() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNumber() {
@@ -71,13 +67,21 @@ public class Car {
         this.releaseDate = releaseDate;
     }
 
+    public Set<Inkassator> getInkassatorSet() {
+        return inkassatorSet;
+    }
+
+    public void setInkassatorSet(Set<Inkassator> inkassatorSet) {
+        this.inkassatorSet = inkassatorSet;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
-                "id=" + id +
-                ", number='" + number + '\'' +
+                "number='" + number + '\'' +
                 ", name='" + name + '\'' +
-                ", cost='" + cost + '\'' +
+                ", cost=" + cost +
+                ", releaseDate=" + releaseDate +
                 '}';
     }
 }

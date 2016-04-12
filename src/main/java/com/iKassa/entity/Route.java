@@ -8,11 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="routs")
 @NamedQuery(name="ROUTE.getAll", query="SELECT c from Route c")
-public class Route {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Route extends Model{
     @Column(name = "name", length = 50)
     private String name;
     @Column(name = "number")
@@ -24,14 +20,6 @@ public class Route {
     }
 
     public Route() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -50,12 +38,4 @@ public class Route {
         this.number = number;
     }
 
-    @Override
-    public String toString() {
-        return "Route{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", number=" + number +
-                '}';
-    }
 }

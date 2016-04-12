@@ -8,10 +8,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="banks")
 @NamedQuery(name="BANK.getAll", query="SELECT c from Bank c")
-public class Bank {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Bank extends Model{
+
     @Column(name = "name", length = 50)
     private String name;
 
@@ -20,14 +18,6 @@ public class Bank {
     }
 
     public Bank() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -41,8 +31,7 @@ public class Bank {
     @Override
     public String toString() {
         return "Bank{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }

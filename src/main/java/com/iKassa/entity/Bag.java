@@ -8,31 +8,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "bags")
 @NamedQuery(name = "BAG.getAll", query = "SELECT c from Bag c")
-public class Bag {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Bag extends Model{
+
     @Column(name = "number")
     private int number;
     @Column(name = "isFull")
     private int isFull;
     @Column(name = "route")
     private int route;
-
-    public Bag(int number, int isFull) {
-        this.number = number;
-        this.isFull = isFull;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private Client clients;
 
     public Bag() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getNumber() {
@@ -59,12 +47,21 @@ public class Bag {
         this.route = route;
     }
 
+    public Client getClients() {
+        return clients;
+    }
+
+    public void setClients(Client clients) {
+        this.clients = clients;
+    }
+
     @Override
     public String toString() {
         return "Bag{" +
-                "id=" + id +
-                ", number=" + number +
+                "number=" + number +
                 ", isFull=" + isFull +
+                ", route=" + route +
+                ", clients=" + clients +
                 '}';
     }
 }

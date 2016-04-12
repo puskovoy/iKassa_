@@ -1,6 +1,7 @@
 package com.iKassa.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,28 +10,18 @@ import java.util.Set;
 @Entity
 @Table(name = "inkassators")
 @NamedQuery(name = "INKASSATOR.getAll", query = "SELECT c from Inkassator c")
-public class Inkassator {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Inkassator extends Model{
+
     @Column(name = "name")
     private String name;
     @Column(name = "age")
     private String age;
-    @Column(name = "route")
-    private int route;
-    @Column(name = "card")
-    private int card;
+    @ManyToMany(mappedBy = "inkassatorSet")
+    private Set<Car> carSet = new HashSet<Car>();
+    /*@OneToMany(mappedBy = "inkassators")
+    private Set<Card> cardSet;*/
 
     public Inkassator() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -49,30 +40,19 @@ public class Inkassator {
         this.age = age;
     }
 
-    public int getRoute() {
-        return route;
+    public Set<Car> getCarSet() {
+        return carSet;
     }
 
-    public void setRoute(int route) {
-        this.route = route;
+    public void setCarSet(Set<Car> carSet) {
+        this.carSet = carSet;
     }
 
-    public int getCard() {
-        return card;
+    /*public Set<Card> getCardSet() {
+        return cardSet;
     }
 
-    public void setCard(int card) {
-        this.card = card;
-    }
-
-    @Override
-    public String toString() {
-        return "Inkassator{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age='" + age + '\'' +
-                ", route=" + route +
-                ", card=" + card +
-                '}';
-    }
+    public void setCardSet(Set<Card> cardSet) {
+        this.cardSet = cardSet;
+    }*/
 }

@@ -1,54 +1,131 @@
 package com.iKassa.testing;
 
-import com.iKassa.entity.Car;
-import com.iKassa.entity.Inkassator;
-import com.iKassa.entity.User;
-import com.iKassa.util.CrudCar;
-import com.iKassa.util.CrudInkassator;
-import com.iKassa.util.CrudUser;
+import com.iKassa.entity.*;
+import com.iKassa.util.Crud;
 import org.junit.Test;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Shevtsov on 027 27.03.16.
  */
 public class CarTest {
-    CrudCar service = new CrudCar();
+    Crud service = new Crud();
+    /*CrudBag serviceBag = new CrudBag();
     CrudUser serviceUser = new CrudUser();
-    CrudInkassator serviceInkassator = new CrudInkassator();
+    CrudClient serviceClient = new CrudClient();
+    CrudInkassator serviceInkassator = new CrudInkassator();*/
 
     @Test
     public void testSaveRecord() throws Exception {
         //Создаем автомобиль для записи в БД
         Car car1 = new Car();
-        car1.setName("Mersedes");
+        car1.setName("Mers");
         car1.setCost(50000);
+        car1.setNumber("AX7777SS");
         car1.setReleaseDate(new Date());
 
         //Записали в БД
-        Car car = service.add(car1);
+        Car car = (Car) service.add(car1);
 
         //Вывели записанную в БД запись
         System.out.println(car);
     }
-    
+
+    @Test
+    public void testSaveRecordUser() throws Exception {
+        //Создаем автомобиль для записи в БД
+        User user = new User();
+        User user1 = new User();
+        user.setName("admin");
+        user.setPassword("admin");
+
+        //Записали в БД
+        user1 = (User) service.add(user);
+
+        //Вывели записанную в БД запись
+        System.out.println(user1);
+    }
+
+    @Test
+    public void testSaveRecordBag() throws Exception {
+
+        Bag bag = new Bag();
+        bag.setNumber(205);
+        bag.setIsFull(1);
+        bag.setRoute(2);
+        //bag.setClients(new Client("Зоря","Adres",12,5,2,15));
+
+        //Записали в БД
+        Bag bag1 = (Bag) service.add(bag);
+
+        //Вывели записанную в БД запись
+        System.out.println(bag1);
+    }
+
+    @Test
+    public void testSaveRecordCl() throws Exception {
+        Client client = new Client();
+        client.setName("Holodok");
+        client.setAdres("адрес");
+        client.setTimeVisit(33);
+        client.setKodNumber(55);
+
+        Client client1 = (Client) service.add(client);
+
+        Bag bag = new Bag();
+        bag.setNumber(205);
+        bag.setIsFull(0);
+        bag.setRoute(2);
+        bag.setClients(client1);
+
+        Bag bag1 = new Bag();
+        bag1.setNumber(206);
+        bag1.setIsFull(0);
+        bag1.setRoute(2);
+        bag1.setClients(client1);
+
+        Bag bag2 = new Bag();
+        bag2.setNumber(207);
+        bag2.setIsFull(0);
+        bag2.setRoute(2);
+        bag2.setClients(client1);
+
+        Bag bag3 = new Bag();
+        bag3.setNumber(208);
+        bag3.setIsFull(0);
+        bag3.setRoute(2);
+        bag3.setClients(client1);
+
+        //Записали в БД
+        Bag bagDB = (Bag) service.add(bag);
+        Bag bagDB1 = (Bag) service.add(bag1);
+        Bag bagDB2 = (Bag) service.add(bag2);
+        Bag bagDB3 = (Bag) service.add(bag3);
+
+        //Вывели записанную в БД запись
+        System.out.println(client1);
+        System.out.println(bagDB);
+        System.out.println(bagDB1);
+        System.out.println(bagDB2);
+        System.out.println(bagDB3);
+    }
+
     @Test
     public void testSaveRecordInkassator() throws Exception {
         //Создаем автомобиль для записи в БД
         Inkassator inkassator1 = new Inkassator();
         inkassator1.setName("Anton");
         inkassator1.setAge("25");
-        inkassator1.setRoute(4);
-        inkassator1.setCard(230);
+
 
         //Записали в БД
-        Inkassator inkassator = serviceInkassator.add(inkassator1);
+        Inkassator inkassator = (Inkassator) service.add(inkassator1);
 
         //Вывели записанную в БД запись
         System.out.println(inkassator);
     }
+
     @Test
     public void testDeleteRecord() throws Exception {
         //Создаем автомобиль для записи в БД
@@ -58,7 +135,7 @@ public class CarTest {
         car1.setReleaseDate(new Date());
 
         //Записуем его в БД
-        Car car = service.add(car1);
+        Car car = (Car) service.add(car1);
 
         //Удвлем его с БД
         service.delete(car.getId());
@@ -73,10 +150,10 @@ public class CarTest {
         car1.setReleaseDate(new Date());
 
         //Записываем в БД
-        Car car = service.add(car1);
+        Car car = (Car) service.add(car1);
 
         //Получние с БД Citroen‎
-        Car carFromDB = service.get(car.getId());
+        Car carFromDB = (Car) service.get(car.getId());
         System.out.println(carFromDB);
 
     }
@@ -90,7 +167,7 @@ public class CarTest {
         car1.setReleaseDate(new Date());
 
         //Записываем в БД
-        car1 = service.add(car1);
+        car1 = (Car) service.add(car1);
 
         car1.setCost(0);
 
@@ -98,11 +175,12 @@ public class CarTest {
         service.update(car1);
 
         //Получаем обновленую запись
-        Car car2 = service.get(car1.getId());
+        Car car2 = (Car) service.get(car1.getId());
         System.out.println(car2);
     }
+
     @Test
-    public void testGetAllUser(){
+    public void testGetAllUser() {
         //Создаем автомобиль для записи в БД
         User user1 = new User();
         user1.setName("Tom");
@@ -119,15 +197,15 @@ public class CarTest {
         user3.setPassword("tuz");
 
         //Сохраняем все авто
-        serviceUser.add(user1);
-        serviceUser.add(user2);
-        serviceUser.add(user3);
+        service.add(user1);
+        service.add(user2);
+        service.add(user3);
         //Получаем все авто с БД
-        List<User> users = serviceUser.getAll();
+       /* List<Object> users = service.getAll(User.class);
 
         //Выводим полученый список авто
-        for(User c : users){
+        for (Object c : users) {
             System.out.println(c);
-        }
+        }*/
     }
 }
