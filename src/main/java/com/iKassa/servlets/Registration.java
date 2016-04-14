@@ -28,13 +28,13 @@ public class Registration extends HttpServlet{
 
         try {
             user.setName(name);
-            user.setName(email);
+            user.setEmail(email);
             user.setPassword(password);
             //Записали в БД и вернули с id
             User user1 = (User) crud.add(user);
             //Вывели записанную в БД запись
             System.out.println(user1);
-            resultJson.put("stan", "ok");
+            resultJson.put("stan", user1.getName());
             out.println(resultJson);
             out.close();
         } catch (Exception e) {

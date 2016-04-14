@@ -17,7 +17,7 @@ public class Card extends Model {
 
     /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inkassator_id", referencedColumnName = "id")
-    private Inkassator inkassator;*/
+    private ServletInkassator inkassator;*/
 
     public Card() {
     }
@@ -30,11 +30,11 @@ public class Card extends Model {
         this.number = number;
     }
 
-    /*public Inkassator getInkassator() {
+    /*public ServletInkassator getInkassator() {
         return inkassator;
     }
 
-    public void setInkassator(Inkassator inkassator) {
+    public void setInkassator(ServletInkassator inkassator) {
         this.inkassator = inkassator;
     }*/
 }

@@ -48,7 +48,15 @@ public class Inkassator extends Model{
         this.carSet = carSet;
     }
 
-    /*public Set<Card> getCardSet() {
+    @Override
+    public String toString() {
+        return "Inkassator{" +
+                "name='" + name + '\'' +
+                ", age='" + age + '\'' +
+                ", carSet=" + carSet +
+                '}';
+    }
+/*public Set<Card> getCardSet() {
         return cardSet;
     }
 

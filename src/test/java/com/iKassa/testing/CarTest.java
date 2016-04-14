@@ -115,8 +115,8 @@ public class CarTest {
     public void testSaveRecordInkassator() throws Exception {
         //Создаем автомобиль для записи в БД
         Inkassator inkassator1 = new Inkassator();
-        inkassator1.setName("Anton");
-        inkassator1.setAge("25");
+        inkassator1.setName("Sata");
+        inkassator1.setAge("29");
 
 
         //Записали в БД

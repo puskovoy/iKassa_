@@ -38,8 +38,12 @@
                 <li><a href="#">Про нас</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="btn_enter" onclick="getdetails(this)">Вход</a></li>
-                <li><a id="btn_registration" onclick="getdetails(this)">Регистрация</a></li>
+                <li><a id="btn_enter"
+                       onclick="getDetails(['#name_company','#main_content','#form_registration'],'#form_enter')">Вход</a>
+                </li>
+                <li><a id="btn_registration"
+                       onclick="getDetails(['#name_company','#main_content','#form_enter'],'#form_registration')">Регистрация</a>
+                </li>
             </ul>
 
         </div>
@@ -214,50 +218,54 @@
         <span class="input-group-addon" id="sizing-addon2"><i
                 class="fa fa-user" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="user_name_reg" placeholder="Username" aria-describedby="sizing-addon2" required>
+        <input type="text" class="form-control" id="user_name_reg" placeholder="Username"
+               aria-describedby="sizing-addon2" required>
     </div>
     <br>
     <div class="input-group">
         <span class="input-group-addon">@</span>
-        <input type="email" class="form-control" id="user_email_reg" placeholder="Useremail" aria-describedby="sizing-addon2" required>
+        <input type="email" class="form-control" id="user_email_reg" placeholder="Useremail"
+               aria-describedby="sizing-addon2" required>
     </div>
     <br>
     <div class="input-group">
 																<span class="input-group-addon"><i class="fa fa-key"
                                                                                                    aria-hidden="true"></i>
 																</span>
-        <input type="password" class="form-control" id="user_password_reg1" placeholder="Userpassword" aria-describedby="sizing-addon2"
+        <input type="password" class="form-control" id="user_password_reg1" placeholder="Userpassword"
+               aria-describedby="sizing-addon2"
                required>
     </div>
     <br>
     <div class="input-group">
-																<span class="input-group-addon"><i class="fa fa-key"
-                                                                                                   aria-hidden="true"></i>
-																</span>
-        <input type="password" class="form-control" id="user_password_reg2" placeholder="Confirm Userpassword" aria-describedby="sizing-addon2"
+        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+        <input type="password" class="form-control" id="user_password_reg2" placeholder="Confirm Userpassword"
+               aria-describedby="sizing-addon2"
                required>
     </div>
     <br>
-    <button class="btn btn-success pull-right">Регистрация</button>
+    <a href="" id="bad_password">Указанные пароли не совпадают. Повторите попытку.</a>
+    <button onclick="Registration(this)" id="btn_reg" class="btn btn-success pull-right">Регистрация</button>
 </div>
 <!--Форма входа-->
 <p>
 <div class="container" id="form_enter">
-    <div class="input-group" >
-            <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i> </span>
-        <input type="text" class="form-control" id="user_name" placeholder="Username" aria-describedby="sizing-addon2" required>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i> </span>
+        <input type="text" class="form-control" id="user_name" placeholder="Username" aria-describedby="sizing-addon2"
+               required>
     </div>
     <br>
     <div class="input-group">
-																<span class="input-group-addon"><i class="fa fa-key"
-                                                                                                   aria-hidden="true"></i>
-																</span>
+        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
         <input type="password" class="form-control" id="user_password" placeholder="Userpassword"
                aria-describedby="sizing-addon2" required>
     </div>
     <br>
     <a href="" id="bad_login">Указан неправильный логин или пароль</a>
-    <button onclick="Login()" class="btn btn-success pull-right">Войти</button>
+    <button onclick="Login(this)" id="btn_log"
+            class="btn btn-success pull-right">Войти
+    </button>
 </div>
 <br>
 <!--Footer-->
@@ -310,10 +318,10 @@
                 <button class="close" typo="button" data-dismiss="modal">
                     <i class="fa fa-close"></i>
                 </button>
-                <h4 class="modal-title">Название окна</h4>
+                <h4 class="modal-title">Поздравляем </h4>
             </div>
             <div class="modal-body">
-                <p>Это модальное окно</p>
+                <p>Вы успешно зарегистрировались!</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" typo="button" data-dismiss="modal">Закрыть</button>
