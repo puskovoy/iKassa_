@@ -65,5 +65,14 @@ public class Client extends Model{
         this.bag = bag;
     }
 
-
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", adres='" + adres + '\'' +
+                ", timeVisit=" + timeVisit +
+                ", kodNumber=" + kodNumber +
+                ", bag=" + bag +
+                '}';
+    }
 }

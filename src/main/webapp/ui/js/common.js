@@ -6,6 +6,10 @@ function getDetails(compHide, compShow) {
     $(compShow).show();
 }
 
+function mainPage() {
+    var url = "/index.html";
+    $(location).attr('href', url);    
+}
 function getInkass(btn) {
     useAjax("inkassator", {}, function valid() {
         console.log('test1');
@@ -18,6 +22,23 @@ function getInkass(btn) {
         }
     });
     $("#" + btn.id).hide();
+}
+
+function addInkass(btn) {
+    var name=document.getElementById("inkassatorName").value;
+    var age=document.getElementById("inkassatorAge").value;
+    useAjax("inkassator", {name:name, age:age}, function valid() {
+        console.log('test1');
+        console.log(danni.length);
+        for (var i = 0; i < danni.length; i++) {
+            var row = "<tr ><td>" + danni[i].id + "</td><td>" +
+                danni[i].name + "</td><td>" + danni[i].age +
+                "</td></tr>";
+            $('#bodyInkass').append(row);
+            $("#" + btn.id).hide();
+            getDetails(['#btn_get_inkass','#formAddInkassator'],'#tabl_inkass')
+        }
+    });
 }
 
 function Registration(btn) {

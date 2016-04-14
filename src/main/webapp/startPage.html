@@ -38,10 +38,8 @@
                 <li><a href="#">Про нас</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="btn_enter" onclick="getdetails(this)">Вход</a></li>
-                <li><a id="btn_registration" onclick="getdetails(this)">Регистрация</a></li>
+                <li><a id="btn_enter" onclick="mainPage()">Выход</a></li>
             </ul>
-
         </div>
     </div>
 </div>
@@ -107,6 +105,25 @@
             <button onclick="getInkass(this)" id="btn_get_inkass" class="btn btn-success pull-left">Показать</button>
     </div>
     </div>
+</div>
+<!--Добавить инкассатора-->
+<br><br>
+<div class="container" id="formAddInkassator">
+    <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon2"><i
+                class="fa fa-user" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" id="inkassatorName" placeholder="Имя инкассатора"
+               aria-describedby="sizing-addon2" required>
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+        <input type="email" class="form-control" id="inkassatorAge" placeholder="Возвраст инкассатора"
+               aria-describedby="sizing-addon2" required>
+    </div>
+    <br>
+    <button onclick="addInkass(this)" id="btnAddInkassator" class="btn btn-success pull-right">Добавить</button>
 </div>
 <!--Footer-->
 <div class="container text-center navbar-bottom">

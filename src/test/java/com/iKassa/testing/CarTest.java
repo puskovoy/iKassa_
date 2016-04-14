@@ -67,32 +67,32 @@ public class CarTest {
     public void testSaveRecordCl() throws Exception {
         Client client = new Client();
         client.setName("Holodok");
-        client.setAdres("адрес");
-        client.setTimeVisit(33);
-        client.setKodNumber(55);
+        client.setAdres("адрес3");
+        client.setTimeVisit(36);
+        client.setKodNumber(57);
 
         Client client1 = (Client) service.add(client);
 
         Bag bag = new Bag();
-        bag.setNumber(205);
+        bag.setNumber(213);
         bag.setIsFull(0);
         bag.setRoute(2);
         bag.setClients(client1);
 
         Bag bag1 = new Bag();
-        bag1.setNumber(206);
+        bag1.setNumber(214);
         bag1.setIsFull(0);
         bag1.setRoute(2);
         bag1.setClients(client1);
 
         Bag bag2 = new Bag();
-        bag2.setNumber(207);
+        bag2.setNumber(215);
         bag2.setIsFull(0);
         bag2.setRoute(2);
         bag2.setClients(client1);
 
         Bag bag3 = new Bag();
-        bag3.setNumber(208);
+        bag3.setNumber(216);
         bag3.setIsFull(0);
         bag3.setRoute(2);
         bag3.setClients(client1);

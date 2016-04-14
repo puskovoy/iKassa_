@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="iKassa" value="76001bdf-253a-4640-ba7b-1b08f159442b" />
+          <factory-entry name="iKassa" value="cbe06f6d-c805-440d-91e5-f3946d773109" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
