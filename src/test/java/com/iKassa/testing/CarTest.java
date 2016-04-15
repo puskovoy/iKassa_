@@ -2,9 +2,16 @@ package com.iKassa.testing;
 
 import com.iKassa.entity.*;
 import com.iKassa.util.Crud;
+import org.json.JSONObject;
 import org.junit.Test;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.servlet.ServletException;
+import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Shevtsov on 027 27.03.16.
@@ -153,7 +160,7 @@ public class CarTest {
         Car car = (Car) service.add(car1);
 
         //Получние с БД Citroen‎
-        Car carFromDB = (Car) service.get(car,car.getId());
+        Car carFromDB = (Car) service.get(car, car.getId());
         System.out.println(carFromDB);
 
     }
@@ -207,5 +214,31 @@ public class CarTest {
         for (Object c : users) {
             System.out.println(c);
         }*/
+    }
+
+    @Test
+    public void testGetAllSviaz() {
+        EntityManager entityManager = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
+
+        /*TypedQuery<Inkassator> namedQuery = entityManager.createQuery("FROM Inkassator", Inkassator.class);
+        List<Inkassator> inkassators = namedQuery.getResultList();
+        for (Inkassator inkassator1 : inkassators) {
+            System.out.println(inkassator1);
+        }*/
+        /*TypedQuery<Client> namedQuery = entityManager.createQuery("from Bag b inner join b.clients", Client.class);
+        List<Client> clients = namedQuery.getResultList();
+        for (Client client : clients) {
+            System.out.println(client);
+        }*/
+       /* TypedQuery<Bag> namedQuery = entityManager.createQuery("from Bag b inner join b.clients", Bag.class);
+        List<Bag> bags = namedQuery.getResultList();
+        for (Bag bag : bags) {
+            System.out.println(bag);
+        }*/
+        TypedQuery<Object> namedQuery = entityManager.createQuery("from Bag b inner join b.clients", Object.class);
+        List<Object> objects = namedQuery.getResultList();
+        for (Object client : objects) {
+            System.out.println(client);
+        }
     }
 }

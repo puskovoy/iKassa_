@@ -8,15 +8,16 @@ function getDetails(compHide, compShow) {
 
 function mainPage() {
     var url = "/index.html";
-    $(location).attr('href', url);    
+    $(location).attr('href', url);
 }
 
 function getInkass() {
     $('#bodyInkass').html('');
     useAjax("inkassator", {}, function valid() {
         for (var i = 0; i < danni.length; i++) {
-            var row = "<tr ><td>" + danni[i].id + "</td><td>" +
-                danni[i].name + "</td><td>" + danni[i].age +
+            var row = "<tr ><td>" + danni[i].id +
+                "</td><td>" + danni[i].name +
+                "</td><td>" + danni[i].age +
                 "</td></tr>";
             $('#bodyInkass').append(row);
         }
@@ -32,17 +33,57 @@ function dropAllInkass() {
 }
 
 function addInkass() {
-    var name=document.getElementById("inkassatorName").value;
-    var age=document.getElementById("inkassatorAge").value;
+    var name = document.getElementById("inkassatorName").value;
+    var age = document.getElementById("inkassatorAge").value;
     $('#bodyInkass').html('');
-    useAjax("inkassator", {name:name, age:age}, function valid() {
+    useAjax("inkassator", {name: name, age: age}, function valid() {
         for (var i = 0; i < danni.length; i++) {
-            var row = "<tr ><td>" + danni[i].id + "</td><td>" +
-                danni[i].name + "</td><td>" + danni[i].age +
+            var row = "<tr ><td>" + danni[i].id +
+                "</td><td>" + danni[i].name +
+                "</td><td>" + danni[i].age +
                 "</td></tr>";
             $('#bodyInkass').append(row);
         }
-        getDetails(['#formAddInkassator'],'#tablInkassator')
+        getDetails(['#formAddInkassator'], '#tablInkassator')
+    });
+}
+
+function getCar() {
+    $('#bodyTablCar').html('');
+    useAjax("car", {}, function valid() {
+        for (var i = 0; i < danni.length; i++) {
+            var row = "<tr ><td>" + danni[i].id +
+                "</td><td>" + danni[i].name +
+                "</td><td>" + danni[i].cost +
+                "</td><td>" + danni[i].number +
+                "</td><td>" + danni[i].date +
+                "</td></tr>";
+            $('#bodyTablCar').append(row);
+        }
+        $('#tablCar').show();
+    });
+}
+
+function dropAllCar() {
+    useAjax("dropAllCar", {}, function valid() {
+        $('#bodyTablCar').html('');
+        $('#modalDropAllCar').modal('show');
+    });
+}
+
+function addCar() {
+    var name = document.getElementById("inkassatorName").value;
+    var age = document.getElementById("inkassatorAge").value;
+    $('#bodyInkass').html('');
+    useAjax("inkassator", {name: name, age: age}, function valid() {
+        for (var i = 0; i < danni.length; i++) {
+            var row = "<tr ><td>" + danni[i].id +
+                "</td><td>" + danni[i].name +
+                "</td><td>" + danni[i].age +
+                "</td></tr>";
+            $('#bodyInkass').append(row);
+        }
+        getDetails(['#formAddInkassator'], '#tablInkassator')
     });
 }
 

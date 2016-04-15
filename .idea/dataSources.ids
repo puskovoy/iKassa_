@@ -6,7 +6,7 @@
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="ikassa"/>
       <table id="2" parent="1" name="bags"/>
       <table id="3" parent="1" name="banks"/>
@@ -20,6 +20,7 @@
       <column id="11" parent="2" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="12" parent="2" name="isFull">
         <data-type>int(11)</data-type>
@@ -33,7 +34,7 @@
       <column id="15" parent="2" name="client_id">
         <data-type>bigint(20)</data-type>
       </column>
-      <index id="16" parent="2" name="FK_7ee1233582f94eff8ec6d091640">
+      <index id="16" parent="2" name="FK_330412ced8fa42f39cd66be1cdb">
         <columns>client_id</columns>
         <desc-columns></desc-columns>
       </index>
@@ -41,7 +42,7 @@
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="18" parent="2" name="FK_7ee1233582f94eff8ec6d091640">
+      <foreign-key id="18" parent="2" name="FK_330412ced8fa42f39cd66be1cdb">
         <columns>client_id</columns>
         <ref-key>~.clients.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
@@ -50,6 +51,7 @@
       <column id="19" parent="3" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="20" parent="3" name="name">
         <data-type>varchar(50)</data-type>
@@ -61,6 +63,7 @@
       <column id="22" parent="4" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="23" parent="4" name="number">
         <data-type>varchar(255)</data-type>
@@ -72,6 +75,7 @@
       <column id="25" parent="5" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="26" parent="5" name="cost">
         <data-type>float</data-type>
@@ -92,6 +96,7 @@
       <column id="31" parent="6" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="32" parent="6" name="adres">
         <data-type>varchar(100)</data-type>
@@ -117,11 +122,11 @@
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <index id="39" parent="7" name="FK_2c3ae07c15c14ec6a633915ff1c">
+      <index id="39" parent="7" name="FK_2c77f933bec1473f8653c5f36f8">
         <columns>Car_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="40" parent="7" name="FK_43453fe63d6d4d03a0f768a2089">
+      <index id="40" parent="7" name="FK_b071424589254256916d700697e">
         <columns>inkassator_id</columns>
         <desc-columns></desc-columns>
       </index>
@@ -130,13 +135,13 @@
 Car_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="42" parent="7" name="FK_2c3ae07c15c14ec6a633915ff1c">
+      <foreign-key id="42" parent="7" name="FK_2c77f933bec1473f8653c5f36f8">
         <columns>Car_id</columns>
         <ref-key>~.inkassators.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="43" parent="7" name="FK_43453fe63d6d4d03a0f768a2089">
+      <foreign-key id="43" parent="7" name="FK_b071424589254256916d700697e">
         <columns>inkassator_id</columns>
         <ref-key>~.cars.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
@@ -145,6 +150,7 @@ Car_id</columns>
       <column id="44" parent="8" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="45" parent="8" name="age">
         <data-type>varchar(255)</data-type>
@@ -159,6 +165,7 @@ Car_id</columns>
       <column id="48" parent="9" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="49" parent="9" name="name">
         <data-type>varchar(50)</data-type>
@@ -173,14 +180,15 @@ Car_id</columns>
       <column id="52" parent="10" name="id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
-      <column id="53" parent="10" name="name">
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="54" parent="10" name="password">
+      <column id="53" parent="10" name="email">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="55" parent="10" name="email">
+      <column id="54" parent="10" name="name">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="55" parent="10" name="password">
         <data-type>varchar(255)</data-type>
       </column>
       <key id="56" parent="10" name="PRIMARY">
