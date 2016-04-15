@@ -10,34 +10,39 @@ function mainPage() {
     var url = "/index.html";
     $(location).attr('href', url);    
 }
-function getInkass(btn) {
+
+function getInkass() {
+    $('#bodyInkass').html('');
     useAjax("inkassator", {}, function valid() {
-        console.log('test1');
-        console.log(danni.length);
         for (var i = 0; i < danni.length; i++) {
             var row = "<tr ><td>" + danni[i].id + "</td><td>" +
                 danni[i].name + "</td><td>" + danni[i].age +
                 "</td></tr>";
             $('#bodyInkass').append(row);
         }
+        $('#tablInkassator').show();
     });
-    $("#" + btn.id).hide();
 }
 
-function addInkass(btn) {
+function dropAllInkass() {
+    useAjax("dropAllInkassator", {}, function valid() {
+        $('#bodyInkass').html('');
+        $('#modalDropAllInkass').modal('show');
+    });
+}
+
+function addInkass() {
     var name=document.getElementById("inkassatorName").value;
     var age=document.getElementById("inkassatorAge").value;
+    $('#bodyInkass').html('');
     useAjax("inkassator", {name:name, age:age}, function valid() {
-        console.log('test1');
-        console.log(danni.length);
         for (var i = 0; i < danni.length; i++) {
             var row = "<tr ><td>" + danni[i].id + "</td><td>" +
                 danni[i].name + "</td><td>" + danni[i].age +
                 "</td></tr>";
             $('#bodyInkass').append(row);
-            $("#" + btn.id).hide();
-            getDetails(['#btn_get_inkass','#formAddInkassator'],'#tabl_inkass')
         }
+        getDetails(['#formAddInkassator'],'#tablInkassator')
     });
 }
 
@@ -53,7 +58,7 @@ function Registration(btn) {
             $(location).attr('href', url);
         });
     } else {
-        console.log("Проверьте пароль!");
+        console.log("Указанные пароли не совпадают!");
         $("#bad_password").show();
         $("#" + btn.id).html("Регистрация");
     }

@@ -34,8 +34,25 @@
         <div class="collapse navbar-collapse" id="responsiv-menu">
             <ul class="nav navbar-nav">
                 <li><a onclick="showLogo()">Главная</a></li>
-                <li><a href="#">Отзывы</a></li>
-                <li><a href="#">Про нас</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown" data-toggle="dropdown">Инкассаторы<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="getInkass()" id="btnGetAllInkassator">Посмотреть</a></li>
+                        <li><a href="#" onclick="getDetails(['#tablInkassator'],'#formAddInkassator')" id="btnAddInkassator">Добавить</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" onclick="dropAllInkass()" id="btnDropAllInkassator">Удалить всех</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown" data-toggle="dropdown">Машины<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Посмотреть</a></li>
+                        <li><a href="#">Добавить</a></li>
+                        <li><a href="#">Удалить</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Удалить всех</a></li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a id="btn_enter" onclick="mainPage()">Выход</a></li>
@@ -84,7 +101,7 @@
     </a>
 </div>
 <!--Таблица инкассаторов-->
-<div class="container" id="tabl_inkass">
+<div class="container" id="tablInkassator">
     <div class="row">
         <div class="col-md-10">
             <h4>ИНКАССАТОРЫ</h4>
@@ -102,8 +119,8 @@
             </table>
         </div>
         <div class="col-md-2">
-            <button onclick="getInkass(this)" id="btn_get_inkass" class="btn btn-success pull-left">Показать</button>
-    </div>
+
+        </div>
     </div>
 </div>
 <!--Добавить инкассатора-->
@@ -123,7 +140,7 @@
                aria-describedby="sizing-addon2" required>
     </div>
     <br>
-    <button onclick="addInkass(this)" id="btnAddInkassator" class="btn btn-success pull-right">Добавить</button>
+    <button onclick="addInkass(this)" id="bAddInkassator" class="btn btn-success pull-right">Добавить</button>
 </div>
 <!--Footer-->
 <div class="container text-center navbar-bottom">
@@ -167,18 +184,18 @@
         </div>
     </div>
 </div>
-<!--Модальное окно-->
-<div class="modal fade" id="modal-1">
+<!--Модальное окно инкассаторов-->
+<div class="modal fade" id="modalDropAllInkass">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" typo="button" data-dismiss="modal">
                     <i class="fa fa-close"></i>
                 </button>
-                <h4 class="modal-title">Поздравляем </h4>
+                <h4 class="modal-title">Удаление </h4>
             </div>
             <div class="modal-body">
-                <p>Вы успешно зарегистрировались!</p>
+                <p>Все записи инкассаторов удалены!</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" typo="button" data-dismiss="modal">Закрыть</button>
@@ -186,6 +203,26 @@
         </div>
     </div>
 </div>
+<!--Модальное окно машин-->
+<div class="modal fade" id="modal-2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" typo="button" data-dismiss="modal">
+                    <i class="fa fa-close"></i>
+                </button>
+                <h4 class="modal-title">Удаление </h4>
+            </div>
+            <div class="modal-body">
+                <p>Все записи автомобилей удалены!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" typo="button" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

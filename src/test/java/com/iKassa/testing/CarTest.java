@@ -67,32 +67,32 @@ public class CarTest {
     public void testSaveRecordCl() throws Exception {
         Client client = new Client();
         client.setName("Holodok");
-        client.setAdres("адрес3");
+        client.setAdres("адрес4");
         client.setTimeVisit(36);
         client.setKodNumber(57);
 
         Client client1 = (Client) service.add(client);
 
         Bag bag = new Bag();
-        bag.setNumber(213);
+        bag.setNumber(217);
         bag.setIsFull(0);
         bag.setRoute(2);
         bag.setClients(client1);
 
         Bag bag1 = new Bag();
-        bag1.setNumber(214);
+        bag1.setNumber(218);
         bag1.setIsFull(0);
         bag1.setRoute(2);
         bag1.setClients(client1);
 
         Bag bag2 = new Bag();
-        bag2.setNumber(215);
+        bag2.setNumber(219);
         bag2.setIsFull(0);
         bag2.setRoute(2);
         bag2.setClients(client1);
 
         Bag bag3 = new Bag();
-        bag3.setNumber(216);
+        bag3.setNumber(220);
         bag3.setIsFull(0);
         bag3.setRoute(2);
         bag3.setClients(client1);
@@ -138,7 +138,7 @@ public class CarTest {
         Car car = (Car) service.add(car1);
 
         //Удвлем его с БД
-        service.delete(car.getId());
+        service.delete(car, car.getId());
     }
 
     @Test
@@ -153,7 +153,7 @@ public class CarTest {
         Car car = (Car) service.add(car1);
 
         //Получние с БД Citroen‎
-        Car carFromDB = (Car) service.get(car.getId());
+        Car carFromDB = (Car) service.get(car,car.getId());
         System.out.println(carFromDB);
 
     }
@@ -175,7 +175,7 @@ public class CarTest {
         service.update(car1);
 
         //Получаем обновленую запись
-        Car car2 = (Car) service.get(car1.getId());
+        Car car2 = (Car) service.get(car1, car1.getId());
         System.out.println(car2);
     }
 

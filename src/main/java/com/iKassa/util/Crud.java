@@ -13,13 +13,13 @@ public class Crud {
         return dataFromDB;
     }
 
-    public Object get(long id){
-        return entityManager.find(Object.class, id);
+    public Object get(Object object, long id){
+        return entityManager.find(object.getClass(), id);
     }
 
-    public void delete (long id){
+    public void delete (Object object, long id){
         entityManager.getTransaction().begin();
-        entityManager.remove(get(id));
+        entityManager.remove(get(object, id));
         entityManager.getTransaction().commit();
     }
 

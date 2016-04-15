@@ -16,7 +16,7 @@ public class Bag extends Model{
     private int isFull;
     @Column(name = "route")
     private int route;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client clients;
 
