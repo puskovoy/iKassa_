@@ -35,17 +35,8 @@ public class MainTest {
             System.out.println(bag.toString());
         }*/
 
-       final int[][] f = new int[4][5];
-        f[0][2]=1;
-        System.out.println(f[2]);
-
-        List<Inkassator> a = new ArrayList<Inkassator>();
-
     }
 
-    protected static <Inkassator> Inkassator g(){
-        return g();
-    }
     public List findWithName(String name) {
         return entityManager.createQuery(
                 "SELECT c FROM Inkassator c WHERE c.name LIKE :custName")

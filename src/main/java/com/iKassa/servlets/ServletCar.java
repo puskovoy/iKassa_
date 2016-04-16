@@ -5,6 +5,9 @@ import com.iKassa.util.Crud;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,12 +20,12 @@ import java.util.List;
 
 @WebServlet("/car")
 public class ServletCar extends HttpServlet {
-    private Crud crud = new Crud();
-    private Car car = new Car();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
+        Crud crud = new Crud();
+        Car car = new Car();
 
         if (req.getParameter("name") == null) {
             System.out.println("Загружаю авто");
@@ -53,9 +56,11 @@ public class ServletCar extends HttpServlet {
     private JSONArray getAllCar() {
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject;
-        List<Object> cars = crud.getAll("CAR.getAll");
-        for (Object object : cars) {
-            car = (Car) object;
+        EntityManager entityManager = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
+
+        TypedQuery<Car> namedQuery = entityManager.createNamedQuery("CAR.getAll", Car.class);
+        List<Car> cars = namedQuery.getResultList();
+        for (Car car : cars) {
             jsonObject = new JSONObject();
             jsonObject.put("id", car.getId());
             jsonObject.put("name", car.getName());
