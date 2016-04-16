@@ -2,6 +2,8 @@ package com.iKassa.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class Crud {
     private EntityManager entityManager = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
@@ -29,8 +31,8 @@ public class Crud {
         entityManager.getTransaction().commit();
     }
 
-    /*public List<Object> getAll(Object object){
-        TypedQuery<Object> namedQuery = entityManager.createNamedQuery("USER.getAll", Object.class);
+    public List<Object> getAll(String query){
+        TypedQuery<Object> namedQuery = entityManager.createNamedQuery(query, Object.class);
         return namedQuery.getResultList();
-    }*/
+    }
 }

@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by User on 021 21.02.16.
- */
 @Entity
 @Table(name = "inkassators")
-@NamedQuery(name = "INKASSATOR.getAll", query = "SELECT c from Inkassator c")
-public class Inkassator extends Model{
+@NamedQueries({
+        @NamedQuery(name = "INKASSATOR.getAll", query = "SELECT c from Inkassator c"),
+        @NamedQuery(name = "INKASSATOR.findeByName", query = "SELECT c from Inkassator c where c.name = :name")
+})
+public class Inkassator extends Model {
 
     @Column(name = "name")
     private String name;

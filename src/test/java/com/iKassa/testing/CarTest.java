@@ -122,7 +122,7 @@ public class CarTest {
     public void testSaveRecordInkassator() throws Exception {
         //Создаем автомобиль для записи в БД
         Inkassator inkassator1 = new Inkassator();
-        inkassator1.setName("Sata");
+        inkassator1.setName("Tata");
         inkassator1.setAge("29");
 
 
@@ -218,13 +218,12 @@ public class CarTest {
 
     @Test
     public void testGetAllSviaz() {
-        EntityManager entityManager = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
 
-        /*TypedQuery<Inkassator> namedQuery = entityManager.createQuery("FROM Inkassator", Inkassator.class);
-        List<Inkassator> inkassators = namedQuery.getResultList();
-        for (Inkassator inkassator1 : inkassators) {
-            System.out.println(inkassator1);
-        }*/
+        List<Object> inkassators = service.getAll("INKASSATOR.getAll");
+        for (Object object : inkassators) {
+            Inkassator inkassator = (Inkassator) object;
+            System.out.println(inkassator.getName());
+        }
         /*TypedQuery<Client> namedQuery = entityManager.createQuery("from Bag b inner join b.clients", Client.class);
         List<Client> clients = namedQuery.getResultList();
         for (Client client : clients) {
@@ -235,10 +234,10 @@ public class CarTest {
         for (Bag bag : bags) {
             System.out.println(bag);
         }*/
-        TypedQuery<Object> namedQuery = entityManager.createQuery("from Bag b inner join b.clients", Object.class);
+        /*TypedQuery<Object> namedQuery = entityManager.createQuery("from Bag b inner join b.clients", Object.class);
         List<Object> objects = namedQuery.getResultList();
         for (Object client : objects) {
             System.out.println(client);
-        }
+        }*/
     }
 }

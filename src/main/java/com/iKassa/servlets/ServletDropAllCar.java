@@ -1,13 +1,9 @@
 package com.iKassa.servlets;
 
 import com.iKassa.entity.Car;
-import com.iKassa.entity.Inkassator;
 import com.iKassa.util.Crud;
 import org.json.JSONObject;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,14 +20,13 @@ public class ServletDropAllCar extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Crud crud = new Crud();
         JSONObject resultJson = new JSONObject();
-        EntityManager entityManager = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
         PrintWriter out = resp.getWriter();
 
         try {
             System.out.println("Drop All Car");
-            TypedQuery<Car> namedQuery = entityManager.createNamedQuery("CAR.getAll", Car.class);
-            List<Car> cars = namedQuery.getResultList();
-            for (Car car : cars) {
+            List<Object> cars = crud.getAll("CAR.getAll");
+            for (Object object : cars) {
+                Car car = (Car) object;
                 crud.delete(car, car.getId());
             }
             resultJson.put("stan", "ok");
@@ -42,4 +37,3 @@ public class ServletDropAllCar extends HttpServlet {
         }
     }
 }
-

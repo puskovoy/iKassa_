@@ -8247,10 +8247,11 @@ h1, h2, h3, h4, h5, h6 {
 
 #tablInkassator,
 #tablCar {
- /*   display: none;*/
+    display: none;
 }
 
-#formAddInkassator {
+#formAddInkassator,
+#formAddCar{
     margin: auto;
     width: 40%;
     display: none;
