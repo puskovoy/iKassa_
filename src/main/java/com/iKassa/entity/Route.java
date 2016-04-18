@@ -1,10 +1,8 @@
 package com.iKassa.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
-/**
- * Created by Shevtsov on 08.04.2016.
- */
 @Entity
 @Table(name="routs")
 @NamedQuery(name="ROUTE.getAll", query="SELECT c from Route c")
@@ -13,14 +11,13 @@ public class Route extends Model{
     private String name;
     @Column(name = "number")
     private int number;
+    @ManyToMany
+    @JoinTable(name="route_client",
+            joinColumns = @JoinColumn(name="client_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name="route_id", referencedColumnName="id"))
+    private Set<Client> clients;
 
-    public Route(String name, int number) {
-        this.name = name;
-        this.number = number;
-    }
-
-    public Route() {
-    }
+    public Route() {}
 
     public String getName() {
         return name;
@@ -38,4 +35,11 @@ public class Route extends Model{
         this.number = number;
     }
 
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
+    }
 }

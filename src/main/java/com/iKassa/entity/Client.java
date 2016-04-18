@@ -1,6 +1,7 @@
 package com.iKassa.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,6 +20,8 @@ public class Client extends Model{
     private int timeVisit;
     @Column(name = "kodNumber", length = 5)
     private int kodNumber;
+    @ManyToMany(mappedBy = "clients")
+    private Set<Route> route = new HashSet<Route>();
     @OneToMany(mappedBy = "clients")
     private Set<Bag> bag;
 
@@ -63,6 +66,14 @@ public class Client extends Model{
 
     public void setBag(Set<Bag> bag) {
         this.bag = bag;
+    }
+
+    public Set<Route> getRoute() {
+        return route;
+    }
+
+    public void setRoute(Set<Route> route) {
+        this.route = route;
     }
 
     @Override

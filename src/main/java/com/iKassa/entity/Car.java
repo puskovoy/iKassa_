@@ -27,11 +27,6 @@ public class Car extends Model{
             inverseJoinColumns = @JoinColumn(name="Car_id", referencedColumnName="id"))
     private Set<Inkassator> inkassatorSet = new HashSet<Inkassator>();
 
-    public Car(String number, String name) {
-        this.number = number;
-        this.name = name;
-    }
-
     public Car() {
     }
 

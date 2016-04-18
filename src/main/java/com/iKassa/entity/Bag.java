@@ -16,9 +16,12 @@ public class Bag extends Model{
     private int isFull;
     @Column(name = "route")
     private int route;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client clients;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inkassator_id", referencedColumnName = "id")
+    private Inkassator inkassator;
 
     public Bag() {
     }
@@ -55,13 +58,20 @@ public class Bag extends Model{
         this.clients = clients;
     }
 
+    public Inkassator getInkassator() {
+        return inkassator;
+    }
+
+    public void setInkassator(Inkassator inkassator) {
+        this.inkassator = inkassator;
+    }
+
     @Override
     public String toString() {
         return "Bag{" +
                 "number=" + number +
                 ", isFull=" + isFull +
                 ", route=" + route +
-                ", clients=" + clients +
                 '}';
     }
 }
