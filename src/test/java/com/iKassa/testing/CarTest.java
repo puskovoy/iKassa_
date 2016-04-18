@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import java.io.PrintWriter;
@@ -19,6 +18,10 @@ import java.util.List;
  */
 public class CarTest {
     Crud service = new Crud();
+    /*CrudBag serviceBag = new CrudBag();
+    CrudUser serviceUser = new CrudUser();
+    CrudClient serviceClient = new CrudClient();
+    CrudInkassator serviceInkassator = new CrudInkassator();*/
 
     @Test
     public void testSaveRecord() throws Exception {
@@ -81,21 +84,25 @@ public class CarTest {
         bag.setNumber(217);
         bag.setIsFull(0);
         bag.setRoute(2);
+        bag.setClients(client1);
 
         Bag bag1 = new Bag();
         bag1.setNumber(218);
         bag1.setIsFull(0);
         bag1.setRoute(2);
+        bag1.setClients(client1);
 
         Bag bag2 = new Bag();
         bag2.setNumber(219);
         bag2.setIsFull(0);
         bag2.setRoute(2);
+        bag2.setClients(client1);
 
         Bag bag3 = new Bag();
         bag3.setNumber(220);
         bag3.setIsFull(0);
         bag3.setRoute(2);
+        bag3.setClients(client1);
 
         //Записали в БД
         Bag bagDB = (Bag) service.add(bag);

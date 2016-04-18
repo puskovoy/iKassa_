@@ -1,5 +1,6 @@
 package com.iKassa.servlets;
 
+import com.iKassa.entity.Car;
 import com.iKassa.entity.Inkassator;
 import com.iKassa.util.Crud;
 import org.json.JSONArray;
@@ -22,10 +23,11 @@ public class ServletInkassator extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter out = resp.getWriter();
         Inkassator inkassator = new Inkassator();
         Crud crud = new Crud();
-        PrintWriter out = resp.getWriter();
 
+        resp.setContentType("text/html;charset=utf-8");
         if (req.getParameter("name") == null) {
             System.out.println("Загружаю инкассаторов");
             try {
@@ -37,16 +39,10 @@ public class ServletInkassator extends HttpServlet {
         } else {
             String name = req.getParameter("name");
             String age = req.getParameter("age");
-            System.out.println(name);
-            System.out.println(age);
             try {
                 inkassator.setName(name);
                 inkassator.setAge(age);
-                //Записали в БД и вернули с id
-                Inkassator inkassator1 = (Inkassator) crud.add(inkassator);
-                //Вывели записанную в БД запись
-                System.out.println(inkassator1);
-
+                crud.add(inkassator);
                 out.println(getAllInkassator());
                 out.close();
             } catch (Exception e) {
@@ -57,17 +53,17 @@ public class ServletInkassator extends HttpServlet {
 
     private JSONArray getAllInkassator() {
         JSONArray jsonArray = new JSONArray();
-        JSONObject object;
+        JSONObject jsonObject;
         EntityManager entityManager = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
 
         TypedQuery<Inkassator> namedQuery = entityManager.createNamedQuery("INKASSATOR.getAll", Inkassator.class);
         List<Inkassator> inkassators = namedQuery.getResultList();
-        for (Inkassator inkassator1 : inkassators) {
-            object = new JSONObject();
-            object.put("id", inkassator1.getId());
-            object.put("name", inkassator1.getName());
-            object.put("age", inkassator1.getAge());
-            jsonArray.put(object);
+        for (Inkassator inkassator: inkassators) {
+            jsonObject = new JSONObject();
+            jsonObject.put("id", inkassator.getId());
+            jsonObject.put("name", inkassator.getName());
+            jsonObject.put("age", inkassator.getAge());
+            jsonArray.put(jsonObject);
         }
         return jsonArray;
     }

@@ -1,7 +1,6 @@
 package com.iKassa.servlets;
 
 import com.iKassa.entity.Car;
-import com.iKassa.entity.Inkassator;
 import com.iKassa.util.Crud;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,9 +23,9 @@ public class ServletCar extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Car car = new Car();
-        Crud crud = new Crud();
         PrintWriter out = resp.getWriter();
+        Crud crud = new Crud();
+        Car car = new Car();
 
         if (req.getParameter("name") == null) {
             System.out.println("Загружаю авто");
@@ -38,19 +37,14 @@ public class ServletCar extends HttpServlet {
             }
         } else {
             String name = req.getParameter("name");
-            String age = req.getParameter("age");
-            System.out.println(name);
-            System.out.println(age);
+            float cost = Float.valueOf(req.getParameter("cost"));
+            String number = req.getParameter("number");
             try {
                 car.setName(name);
-                car.setCost(50000);
-                car.setNumber("AX7777SS");
+                car.setCost(cost);
+                car.setNumber(number);
                 car.setReleaseDate(new Date());
-                //Записали в БД и вернули с id
-                Car car1 = (Car) crud.add(car);
-                //Вывели записанную в БД запись
-                System.out.println(car1);
-
+                crud.add(car);
                 out.println(getAllCar());
                 out.close();
             } catch (Exception e) {
@@ -61,19 +55,19 @@ public class ServletCar extends HttpServlet {
 
     private JSONArray getAllCar() {
         JSONArray jsonArray = new JSONArray();
-        JSONObject object;
+        JSONObject jsonObject;
         EntityManager entityManager = Persistence.createEntityManagerFactory("iKassa").createEntityManager();
 
         TypedQuery<Car> namedQuery = entityManager.createNamedQuery("CAR.getAll", Car.class);
         List<Car> cars = namedQuery.getResultList();
-        for (Car car1 : cars) {
-            object = new JSONObject();
-            object.put("id", car1.getId());
-            object.put("name", car1.getName());
-            object.put("cost", car1.getCost());
-            object.put("number", car1.getNumber());
-            object.put("date", car1.getReleaseDate());
-            jsonArray.put(object);
+        for (Car car : cars) {
+            jsonObject = new JSONObject();
+            jsonObject.put("id", car.getId());
+            jsonObject.put("name", car.getName());
+            jsonObject.put("cost", car.getCost());
+            jsonObject.put("number", car.getNumber());
+            jsonObject.put("date", car.getReleaseDate());
+            jsonArray.put(jsonObject);
         }
         return jsonArray;
     }
