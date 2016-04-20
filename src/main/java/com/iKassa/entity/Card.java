@@ -14,9 +14,11 @@ public class Card extends Model {
 
     @Column(name = "number")
     private String number;
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inkassator_id", referencedColumnName = "id")
-    private Inkassator inkassator;
+    private Inkassator inkassator;*/
+    @OneToOne(/*optional = false,*/ mappedBy="card")
+    private Client client;
 
     public Card() {
     }
@@ -29,11 +31,27 @@ public class Card extends Model {
         this.number = number;
     }
 
-    public Inkassator getInkassator() {
+    /*public Inkassator getInkassator() {
         return inkassator;
     }
 
     public void setInkassator(Inkassator inkassator) {
         this.inkassator = inkassator;
+    }*/
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "number='" + number + '\'' +
+                /*", client=" + client +*/
+                '}';
     }
 }

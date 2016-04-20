@@ -20,10 +20,13 @@ public class Client extends Model{
     private int timeVisit;
     @Column(name = "kodNumber", length = 5)
     private int kodNumber;
-    @ManyToMany(mappedBy = "clients")
-    private Set<Route> route = new HashSet<Route>();
+    /*@ManyToMany(mappedBy = "clients")
+    private Set<Route> route = new HashSet<Route>();*/
     @OneToMany(mappedBy = "clients")
     private Set<Bag> bag;
+    @OneToOne(optional = false)
+    @JoinColumn(name="card_id", unique = true, nullable = false, updatable = false)
+    private Card card;
 
     public Client() {
     }
@@ -68,12 +71,20 @@ public class Client extends Model{
         this.bag = bag;
     }
 
-    public Set<Route> getRoute() {
+   /* public Set<Route> getRoute() {
         return route;
     }
 
     public void setRoute(Set<Route> route) {
         this.route = route;
+    }*/
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     @Override
@@ -83,6 +94,7 @@ public class Client extends Model{
                 ", adres='" + adres + '\'' +
                 ", timeVisit=" + timeVisit +
                 ", kodNumber=" + kodNumber +
+                ", card=" + card +
                 ", bag=" + bag +
                 '}';
     }

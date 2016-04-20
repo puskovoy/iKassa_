@@ -7,11 +7,14 @@ import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Shevtsov on 027 27.03.16.
@@ -72,37 +75,38 @@ public class CarTest {
 
     @Test
     public void testSaveRecordCl() throws Exception {
+
         Client client = new Client();
         client.setName("Holodok");
         client.setAdres("адрес4");
         client.setTimeVisit(36);
         client.setKodNumber(57);
 
-        Client client1 = (Client) service.add(client);
+        Client clientDB1 = (Client) service.add(client);
 
         Bag bag = new Bag();
         bag.setNumber(217);
         bag.setIsFull(0);
-        bag.setRoute(2);
-        bag.setClients(client1);
+        bag.setRoute(1);
+        bag.setClients(clientDB1);
 
         Bag bag1 = new Bag();
         bag1.setNumber(218);
         bag1.setIsFull(0);
-        bag1.setRoute(2);
-        bag1.setClients(client1);
+        bag1.setRoute(1);
+        bag1.setClients(clientDB1);
 
         Bag bag2 = new Bag();
         bag2.setNumber(219);
         bag2.setIsFull(0);
-        bag2.setRoute(2);
-        bag2.setClients(client1);
+        bag2.setRoute(1);
+        bag2.setClients(clientDB1);
 
         Bag bag3 = new Bag();
         bag3.setNumber(220);
         bag3.setIsFull(0);
-        bag3.setRoute(2);
-        bag3.setClients(client1);
+        bag3.setRoute(1);
+        bag3.setClients(clientDB1);
 
         //Записали в БД
         Bag bagDB = (Bag) service.add(bag);
@@ -110,12 +114,146 @@ public class CarTest {
         Bag bagDB2 = (Bag) service.add(bag2);
         Bag bagDB3 = (Bag) service.add(bag3);
 
+        Client client0 = new Client();
+        client.setName("Алвик");
+        client.setAdres("вул.Польова,81");
+        client.setTimeVisit(20);
+        client.setKodNumber(296);
+
+        Client clientDB2 = (Client) service.add(client0);
+
+        Bag bag4 = new Bag();
+        bag4.setNumber(929);
+        bag4.setIsFull(0);
+        bag4.setRoute(1);
+        /*bag4.setClients(clientDB2);*/
+
+        Bag bag5 = new Bag();
+        bag5.setNumber(930);
+        bag5.setIsFull(0);
+        bag5.setRoute(1);
+        /*bag5.setClients(clientDB2);*/
+
+        Bag bag6 = new Bag();
+        bag6.setNumber(931);
+        bag6.setIsFull(0);
+        bag6.setRoute(1);
+        /*bag6.setClients(clientDB2);*/
+
+        Bag bag7 = new Bag();
+        bag7.setNumber(932);
+        bag7.setIsFull(0);
+        bag7.setRoute(1);
+        /*bag7.setClients(clientDB2);*/
+
+        //Записали в БД
+        Bag bagDB5 = (Bag) service.add(bag4);
+        Bag bagDB6 = (Bag) service.add(bag5);
+        Bag bagDB7 = (Bag) service.add(bag6);
+        Bag bagDB4 = (Bag) service.add(bag7);
         //Вывели записанную в БД запись
-        System.out.println(client1);
+        System.out.println(clientDB1);
+        System.out.println(clientDB2);
         System.out.println(bagDB);
         System.out.println(bagDB1);
         System.out.println(bagDB2);
         System.out.println(bagDB3);
+        System.out.println(bagDB4);
+        System.out.println(bagDB5);
+        System.out.println(bagDB6);
+        System.out.println(bagDB7);
+
+        Set<Client> clientSet = new HashSet<Client>();
+        clientSet.add(clientDB1);
+        clientSet.add(clientDB2);
+
+        Set<Bag> bagSet = new HashSet<Bag>();
+        bagSet.add(bagDB);
+        bagSet.add(bagDB1);
+        bagSet.add(bagDB2);
+        bagSet.add(bagDB3);
+        bagSet.add(bagDB4);
+        bagSet.add(bagDB5);
+        bagSet.add(bagDB6);
+        bagSet.add(bagDB7);
+
+        Route route = new Route();
+        route.setName("start");
+        route.setNumber(1);
+        /*route.setClients(clientSet);*/
+
+        Route route1 = (Route) service.add(route);
+
+        System.out.println(route1);
+
+        Inkassator inkassator = new Inkassator();
+        inkassator.setName("Stas");
+        inkassator.setAge("30");
+        inkassator.setBagSet(bagSet);
+
+        Inkassator inkassatorDB = (Inkassator) service.add(inkassator);
+        System.out.println(inkassatorDB);
+
+        Card card = new Card();
+        card.setNumber("209");
+        card.setClient(clientDB1);
+
+        Card cardDB = (Card) service.add(card);
+        System.out.println(cardDB);
+    }
+
+    @Test
+    public void testSaveRecordCardClient() throws Exception {
+        Card card = new Card();
+        card.setNumber("225");
+
+        Card cardDB = (Card) service.add(card);
+
+        Client client = new Client();
+        client.setName("Алвик");
+        client.setAdres("вул.Польова,81");
+        client.setTimeVisit(20);
+        client.setKodNumber(296);
+        client.setCard(cardDB);
+
+        Client clientDB1 = (Client) service.add(client);
+
+        Bag bag = new Bag();
+        bag.setNumber(217);
+        bag.setIsFull(0);
+        bag.setRoute(1);
+        bag.setClients(clientDB1);
+
+        Bag bag1 = new Bag();
+        bag1.setNumber(218);
+        bag1.setIsFull(0);
+        bag1.setRoute(1);
+        bag1.setClients(clientDB1);
+
+        Bag bag2 = new Bag();
+        bag2.setNumber(219);
+        bag2.setIsFull(0);
+        bag2.setRoute(1);
+        bag2.setClients(clientDB1);
+
+        Bag bag3 = new Bag();
+        bag3.setNumber(220);
+        bag3.setIsFull(0);
+        bag3.setRoute(1);
+        bag3.setClients(clientDB1);
+
+        //Записали в БД
+        Bag bagDB = (Bag) service.add(bag);
+        Bag bagDB1 = (Bag) service.add(bag1);
+        Bag bagDB2 = (Bag) service.add(bag2);
+        Bag bagDB3 = (Bag) service.add(bag3);
+
+        System.out.println(bagDB);
+        System.out.println(bagDB1);
+        System.out.println(bagDB2);
+        System.out.println(bagDB3);
+        System.out.println(cardDB);
+        System.out.println(clientDB1);
     }
 
     @Test
@@ -241,17 +379,24 @@ public class CarTest {
         for (Inkassator client : obj) {
             System.out.println(client);
         }*/
+
+
         TypedQuery<Client> namedQuery1 = entityManager.createNamedQuery("CLIENT.getAll", Client.class);
         List<Client> clients = namedQuery1.getResultList();
-        for (Client client: clients) {
+        for (Client client : clients) {
             System.out.println(client);
         }
+        /*TypedQuery<Card> namedQuery = entityManager.createNamedQuery("CARD.getAll", Card.class);
+        List<Card> cards = namedQuery.getResultList();
+        for (Card card : cards) {
+            System.out.println(card);
+        }*/
 //Взять одну запись можно так
-        Query namedQuery = entityManager.createQuery("from Bag where number = :paramName");
-        namedQuery.setParameter("paramName",209);
-        List obj = namedQuery.getResultList();
+        Query namedQuery2 = entityManager.createQuery("from Bag where number = :paramName");
+        namedQuery2.setParameter("paramName", 209);
+        List obj = namedQuery2.getResultList();
 
-            System.out.println(obj);
+        System.out.println(obj);
         /*TypedQuery<Bag> namedQuery = entityManager.createQuery("BA.getAll", Bag.class);
         List<Bag> inkassators = namedQuery.getResultList();
         for (Bag inkassator1 : inkassators) {
