@@ -2,9 +2,7 @@ package com.iKassa.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by User on 029 29.02.16.
- */
+
 @Entity
 @Table(name = "bags")
 @NamedQuery(name = "BAG.getAll", query = "SELECT c from Bag c")
@@ -14,14 +12,12 @@ public class Bag extends Model{
     private int number;
     @Column(name = "isFull")
     private int isFull;
-    @Column(name = "route")
-    private int route;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client clients;
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inkassator_id", referencedColumnName = "id")
-    private Inkassator inkassator;
+    private Inkassator inkassator;*/
 
     public Bag() {
     }
@@ -42,14 +38,6 @@ public class Bag extends Model{
         this.isFull = isFull;
     }
 
-    public int getRoute() {
-        return route;
-    }
-
-    public void setRoute(int route) {
-        this.route = route;
-    }
-
     public Client getClients() {
         return clients;
     }
@@ -58,20 +46,19 @@ public class Bag extends Model{
         this.clients = clients;
     }
 
-    public Inkassator getInkassator() {
+    /*public Inkassator getInkassator() {
         return inkassator;
     }
 
     public void setInkassator(Inkassator inkassator) {
         this.inkassator = inkassator;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "Bag{" +
                 "number=" + number +
                 ", isFull=" + isFull +
-                ", route=" + route +
                 '}';
     }
 }

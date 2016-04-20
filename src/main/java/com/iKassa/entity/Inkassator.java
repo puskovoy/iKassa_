@@ -17,10 +17,10 @@ public class Inkassator extends Model {
     private Set<Car> carSet = new HashSet<Car>();
     /*@OneToMany(mappedBy = "inkassator")
     private Set<Card> cardSet;*/
-    @OneToMany(mappedBy = "inkassator")
-    private Set<Bag> bagSet;
-    @ManyToMany(mappedBy = "inkassatorSet")
-    private Set<Route> routeSet = new HashSet<Route>();
+    /*@OneToMany(mappedBy = "inkassator")
+    private Set<Bag> bagSet;*/
+   /* @ManyToMany(mappedBy = "inkassatorSet")
+    private Set<Route> routeSet = new HashSet<Route>();*/
 
     public Inkassator() {
     }
@@ -49,21 +49,21 @@ public class Inkassator extends Model {
         this.carSet = carSet;
     }
 
-    public Set<Bag> getBagSet() {
+    /*public Set<Bag> getBagSet() {
         return bagSet;
     }
 
     public void setBagSet(Set<Bag> bagSet) {
         this.bagSet = bagSet;
-    }
+    }*/
 
-    public Set<Route> getRouteSet() {
+    /*public Set<Route> getRouteSet() {
         return routeSet;
     }
 
     public void setRouteSet(Set<Route> routeSet) {
         this.routeSet = routeSet;
-    }
+    }*/
 
     @Override
     public String toString() {

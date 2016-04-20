@@ -7,30 +7,20 @@ import java.util.Set;
 @Table(name="routs")
 @NamedQuery(name="ROUTE.getAll", query="SELECT c from Route c")
 public class Route extends Model{
-    @Column(name = "name", length = 50)
-    private String name;
     @Column(name = "number")
     private int number;
-    /*@ManyToMany
+    @ManyToMany
     @JoinTable(name="route_client",
             joinColumns = @JoinColumn(name="client_id", referencedColumnName="id"),
             inverseJoinColumns = @JoinColumn(name="route_id", referencedColumnName="id"))
-    private Set<Client> clients;*/
-    @ManyToMany
+    private Set<Client> clients;
+    /*@ManyToMany
     @JoinTable(name="route_inkassator",
             joinColumns = @JoinColumn(name="inkassator_id", referencedColumnName="id"),
             inverseJoinColumns = @JoinColumn(name="route_id", referencedColumnName="id"))
-    private Set<Inkassator> inkassatorSet;
+    private Set<Inkassator> inkassatorSet;*/
 
     public Route() {}
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getNumber() {
         return number;
@@ -40,19 +30,27 @@ public class Route extends Model{
         this.number = number;
     }
 
-   /* public Set<Client> getClients() {
+    public Set<Client> getClients() {
         return clients;
     }
 
     public void setClients(Set<Client> clients) {
         this.clients = clients;
-    }*/
+    }
 
-    public Set<Inkassator> getInkassatorSet() {
+   /* public Set<Inkassator> getInkassatorSet() {
         return inkassatorSet;
     }
 
     public void setInkassatorSet(Set<Inkassator> inkassatorSet) {
         this.inkassatorSet = inkassatorSet;
+    }*/
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "number=" + number +
+                ", clients=" + clients +
+                '}';
     }
 }

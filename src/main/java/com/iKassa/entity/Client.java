@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by User on 021 21.02.16.
- */
 @Entity
 @Table(name="clients")
 @NamedQuery(name="CLIENT.getAll", query="SELECT c from Client c")
@@ -20,8 +17,8 @@ public class Client extends Model{
     private int timeVisit;
     @Column(name = "kodNumber", length = 5)
     private int kodNumber;
-    /*@ManyToMany(mappedBy = "clients")
-    private Set<Route> route = new HashSet<Route>();*/
+    @ManyToMany(mappedBy = "clients")
+    private Set<Route> route = new HashSet<Route>();
     @OneToMany(mappedBy = "clients")
     private Set<Bag> bag;
     @OneToOne(optional = false)
@@ -71,13 +68,13 @@ public class Client extends Model{
         this.bag = bag;
     }
 
-   /* public Set<Route> getRoute() {
+    public Set<Route> getRoute() {
         return route;
     }
 
     public void setRoute(Set<Route> route) {
         this.route = route;
-    }*/
+    }
 
     public Card getCard() {
         return card;
@@ -94,8 +91,9 @@ public class Client extends Model{
                 ", adres='" + adres + '\'' +
                 ", timeVisit=" + timeVisit +
                 ", kodNumber=" + kodNumber +
-                ", card=" + card +
+                /*", route=" + route +*/
                 ", bag=" + bag +
+                ", card=" + card +
                 '}';
     }
 }
