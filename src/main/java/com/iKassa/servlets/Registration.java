@@ -23,11 +23,15 @@ public class Registration extends HttpServlet{
         Crud crud = new Crud();
 
         String name = req.getParameter("name");
+        String login = req.getParameter("login");
+        String address = req.getParameter("address");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
         try {
             user.setName(name);
+            user.setLogin(login);
+            user.setAddres(address);
             user.setEmail(email);
             user.setPassword(password);
             //Записали в БД и вернули с id

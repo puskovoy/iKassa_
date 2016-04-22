@@ -214,45 +214,49 @@
 <!--Форма регистрации-->
 <p>
 <div class="container" id="form_registration">
+    <h4>РЕГИСТРАЦИЯ ПОЛЬЗОВАТЕЛЯ</h4>
     <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon2"><i
+        <span class="input-group-addon"><i
                 class="fa fa-user" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="user_name_reg" placeholder="Username"
+        <input type="text" class="form-control" id="userID" placeholder="Login name"
                aria-describedby="sizing-addon2" required>
     </div>
-    <br>
+    <div class="input-group">
+        <span class="input-group-addon"><i
+                class="fa fa-user" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" id="userName" placeholder="User name"
+               aria-describedby="sizing-addon2" required>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon"><i
+                class="fa fa-user" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" id="userAddress" placeholder="User address"
+               aria-describedby="sizing-addon2" required>
+    </div>
     <div class="input-group">
         <span class="input-group-addon">@</span>
-        <input type="email" class="form-control" id="user_email_reg" placeholder="Useremail"
+        <input type="email" class="form-control" id="userEmail" placeholder="User email"
                aria-describedby="sizing-addon2" required>
     </div>
-    <br>
     <div class="input-group">
-																<span class="input-group-addon"><i class="fa fa-key"
-                                                                                                   aria-hidden="true"></i>
-																</span>
-        <input type="password" class="form-control" id="user_password_reg1" placeholder="Userpassword"
-               aria-describedby="sizing-addon2"
-               required>
+        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i>
+        </span>
+        <input type="password" class="form-control" id="userPassword" placeholder="User password"
+               aria-describedby="sizing-addon2" required>
     </div>
-    <br>
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-        <input type="password" class="form-control" id="user_password_reg2" placeholder="Confirm Userpassword"
-               aria-describedby="sizing-addon2"
-               required>
-    </div>
-    <br>
-    <a href="" id="bad_password">Указанные пароли не совпадают. Повторите попытку.</a>
-    <button onclick="Registration(this)" id="btn_reg" class="btn btn-success pull-right">Регистрация</button>
+    <a href="" id="bad_password">Сообщение об ошибке!</a>
+    <button onclick="registration(this)" id="btn_reg" class="btn btn-success pull-right">Регистрация</button>
 </div>
 <!--Форма входа-->
 <p>
 <div class="container" id="form_enter">
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i> </span>
-        <input type="text" value="admin" class="form-control" id="user_name" placeholder="Username" aria-describedby="sizing-addon2"
+        <input type="text" value="admin" class="form-control" id="user_name" placeholder="Username"
+               aria-describedby="sizing-addon2"
                required>
     </div>
     <br>
@@ -315,7 +319,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button class="close" typo="button" data-dismiss="modal">
+                <button class="close" data-dismiss="modal">
                     <i class="fa fa-close"></i>
                 </button>
                 <h4 class="modal-title">Поздравляем </h4>
@@ -324,7 +328,7 @@
                 <p>Вы успешно зарегистрировались!</p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" typo="button" data-dismiss="modal">Закрыть</button>
+                <button class="btn btn-danger" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>

@@ -9,6 +9,10 @@ public class User extends Model {
 
     @Column(name = "name", length = 50)
     private String name;
+    @Column(name = "login", length = 50)
+    private String login;
+    @Column(name = "addres", length = 50)
+    private String addres;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -23,6 +27,22 @@ public class User extends Model {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getAddres() {
+        return addres;
+    }
+
+    public void setAddres(String addres) {
+        this.addres = addres;
     }
 
     public String getPassword() {

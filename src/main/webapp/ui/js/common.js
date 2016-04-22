@@ -17,7 +17,7 @@ function getInkass() {
     useAjax("inkassator", {}, function valid() {
         for (var i = 0; i < danni.length; i++) {
             var row = "<tr ><td>" + danni[i].id +
-                "</td><td>" + danni[i].name +
+                "</td><td>" + danni[i].surname + " " + danni[i].name +
                 "</td><td>" + danni[i].age +
                 "</td></tr>";
             $('#bodyInkass').append(row);
@@ -35,12 +35,13 @@ function dropAllInkass() {
 
 function addInkass() {
     var name = document.getElementById("inkassatorName").value;
+    var surName = document.getElementById("inkassatorSurname").value;
     var age = document.getElementById("inkassatorAge").value;
     $('#bodyInkass').html('');
-    useAjax("inkassator", {name: name, age: age}, function valid() {
+    useAjax("inkassator", {name: name, surname: surName, age: age}, function valid() {
         for (var i = 0; i < danni.length; i++) {
             var row = "<tr ><td>" + danni[i].id +
-                "</td><td>" + danni[i].name +
+                "</td><td>" + danni[i].surname + " " + danni[i].name +
                 "</td><td>" + danni[i].age +
                 "</td></tr>";
             $('#bodyInkass').append(row);
@@ -92,21 +93,25 @@ function addCar() {
     });
 }
 
-function Registration(btn) {
-    var user = document.getElementById("user_name_reg").value;
-    var email = document.getElementById("user_email_reg").value;
-    var password1 = document.getElementById("user_password_reg1").value;
-    var password2 = document.getElementById("user_password_reg2").value;
-    if (password1 == password2) {
+function registration(btn) {
+    if (validation()) {
+        var user = document.getElementById("userName").value;
+        var login = document.getElementById("userID").value;
+        var email = document.getElementById("userEmail").value;
+        var address = document.getElementById("userAddress").value;
+        var password = document.getElementById("userPassword").value;
+
         $("#" + btn.id).append("  <i class='fa fa-spinner fa-spin'>");
-        useAjax("reg", {name: user, email: email, password: password1}, function valid() {
+        useAjax("reg", {
+            name: user,
+            login: login,
+            email: email,
+            address: address,
+            password: password
+        }, function valid() {
             var url = "/startPage.html";
             $(location).attr('href', url);
         });
-    } else {
-        console.log("Указанные пароли не совпадают!");
-        $("#bad_password").show();
-        $("#" + btn.id).html("Регистрация");
     }
 }
 
@@ -138,4 +143,90 @@ function useAjax(type, data, callBack) {
             callBack(data);
         }
     });
+}
+/*validating*/
+function validateUsername(fld, mx, my) {
+    var error = "";
+    var illegalChars = /\W/; // allow letters, numbers, and underscores
+    if (fld.value == "") {
+        error = "You didn't enter a username.";
+        console.log(error);
+        msgErr(error,"bad_password");
+        return false;
+    } else if ((fld.value.length < mx) || (fld.value.length > my)) {
+        error = "The username is the wrong length / length be between " + mx + " to " + my;
+        console.log(error);
+        msgErr(error,"bad_password");
+        return false;
+    } else if (illegalChars.test(fld.value)) {
+        error = "The username contains illegal characters.";
+        console.log(error);
+        msgErr(error,"bad_password");
+        return false;
+    }
+    return true;
+}
+function validatePassword(fld, mx, my) {
+    var error = "";
+    var illegalChars = /[\W_]/; // allow only letters and numbers
+    if (fld.value == "") {
+        error = "You didn't enter a password.\n";
+        console.log(error);
+        msgErr(error,"bad_password");
+        return false;
+    } else if ((fld.value.length < 7) || (fld.value.length > 15)) {
+        error = "The password is the wrong length / length be between " + mx + " to " + my;
+        console.log(error);
+        msgErr(error,"bad_password");
+        return false;
+    } else if (illegalChars.test(fld.value)) {
+        error = "The password contains illegal characters.";
+        console.log(error);
+        msgErr(error,"bad_password");
+        return false;
+    } else if ((fld.value.search(/[a-zA-Z]+/) == -1) || (fld.value.search(/[0-9]+/) == -1)) {
+        error = "The password must contain at least one numeral.";
+        console.log(error);
+        msgErr(error,"bad_password");
+        return false;
+    }
+    return true;
+}
+function allLetter(uname) {
+    var letters = /^[A-Za-z]+$/;
+    if (uname.value.match(letters)) {
+        return true;
+    } else {
+        console.log('Username must have alphabet characters only');
+        msgErr(error,"bad_password");
+        return false;
+    }
+}
+function validateEmail(email) {
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!filter.test(email.value)) {
+        console.log('Please provide a valid email address');
+        msgErr(error,"bad_password");
+        return false;
+    }
+}
+function validation() {
+    var uid = document.getElementById("userID");
+    var uname = document.getElementById("userName");
+    var uemail = document.getElementById("userEmail");
+    var passid = document.getElementById("userPassword");
+    if (validateUsername(uid, 5, 12)) {
+        if (validatePassword(passid, 7, 12)) {
+            if (allLetter(uname)) {
+                if (validateEmail(uemail)) {
+                }
+            }
+        }
+    }
+    return false;
+}
+function msgErr(msg,fld) {
+    var div = $("#"+fld);
+    div.html(msg);
+    div.show();
 }

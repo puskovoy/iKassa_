@@ -11,6 +11,8 @@ public class Inkassator extends Model {
 
     @Column(name = "name")
     private String name;
+    @Column(name = "surname")
+    private String surname;
     @Column(name = "age")
     private String age;
     @ManyToMany(mappedBy = "inkassatorSet")
@@ -31,6 +33,14 @@ public class Inkassator extends Model {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getAge() {
@@ -69,6 +79,7 @@ public class Inkassator extends Model {
     public String toString() {
         return "Inkassator{" +
                 "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", age='" + age + '\'' +
                 ", carSet=" + carSet +
                 '}';

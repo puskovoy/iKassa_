@@ -16,11 +16,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Shevtsov on 027 27.03.16.
- */
 public class CarTest {
-    Crud service = new Crud();
+    private Crud service = new Crud();
     /*CrudBag serviceBag = new CrudBag();
     CrudUser serviceUser = new CrudUser();
     CrudClient serviceClient = new CrudClient();
@@ -46,12 +43,11 @@ public class CarTest {
     public void testSaveRecordUser() throws Exception {
         //Создаем автомобиль для записи в БД
         User user = new User();
-        User user1 = new User();
         user.setName("admin");
         user.setPassword("admin");
 
         //Записали в БД
-        user1 = (User) service.add(user);
+        User user1 = (User) service.add(user);
 
         //Вывели записанную в БД запись
         System.out.println(user1);
@@ -425,17 +421,17 @@ public class CarTest {
         for (Card card : cards) {
             System.out.println(card);
         }*/
-        TypedQuery<Route> namedQuery2 = entityManager.createNamedQuery("ROUTE.getAll", Route.class);
+        /*TypedQuery<Route> namedQuery2 = entityManager.createNamedQuery("ROUTE.getAll", Route.class);
         List<Route> routes = namedQuery2.getResultList();
         for (Route route : routes) {
             System.out.println(route);
-        }
+        }*/
 //Взять одну запись можно так
-        /*Query namedQuery2 = entityManager.createQuery("from Bag where number = :paramName");
-        namedQuery2.setParameter("paramName", 209);
+        Query namedQuery2 = entityManager.createQuery("from Client where kodNumber = :paramName");
+        namedQuery2.setParameter("paramName", 145);
         List obj = namedQuery2.getResultList();
 
-        System.out.println(obj);*/
+        System.out.println(obj);
         /*TypedQuery<Bag> namedQuery = entityManager.createQuery("BA.getAll", Bag.class);
         List<Bag> inkassators = namedQuery.getResultList();
         for (Bag inkassator1 : inkassators) {

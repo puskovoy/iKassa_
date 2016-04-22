@@ -38,9 +38,11 @@ public class ServletInkassator extends HttpServlet {
             }
         } else {
             String name = req.getParameter("name");
+            String surName = req.getParameter("surname");
             String age = req.getParameter("age");
             try {
                 inkassator.setName(name);
+                inkassator.setSurname(surName);
                 inkassator.setAge(age);
                 crud.add(inkassator);
                 out.println(getAllInkassator());
@@ -62,6 +64,7 @@ public class ServletInkassator extends HttpServlet {
             jsonObject = new JSONObject();
             jsonObject.put("id", inkassator.getId());
             jsonObject.put("name", inkassator.getName());
+            jsonObject.put("surname", inkassator.getSurname());
             jsonObject.put("age", inkassator.getAge());
             jsonArray.put(jsonObject);
         }

@@ -21,7 +21,7 @@ figcaption,
 figure,
 footer,
 header,
-hgroup,
+/*hgroup,*/
 main,
 menu,
 nav,
@@ -328,7 +328,7 @@ th {
     position: relative;
     top: 1px;
     display: inline-block;
-    font-family: 'Glyphicons Halflings';
+    /*font-family: 'Glyphicons Halflings';*/
     font-style: normal;
     font-weight: normal;
     line-height: 1;
@@ -1434,8 +1434,8 @@ a:focus {
 }
 
 a:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
+/*    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;*/
     outline-offset: -2px;
 }
 
@@ -1877,7 +1877,7 @@ abbr[data-original-title] {
 blockquote {
     padding: 10px 20px;
     margin: 0 0 20px;
-    font-size: 17.5px;
+    font-size: 17px;
     border-left: 5px solid #eee;
 }
 
@@ -1970,7 +1970,7 @@ kbd kbd {
 
 pre {
     display: block;
-    padding: 9.5px;
+    padding: 9px;
     margin: 0 0 10px;
     font-size: 13px;
     line-height: 1.42857143;
@@ -3209,8 +3209,8 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
+    /*outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;*/
     outline-offset: -2px;
 }
 
@@ -3498,7 +3498,7 @@ select[multiple].input-lg {
 }
 
 .has-feedback .form-control {
-    padding-right: 42.5px;
+    padding-right: 42px;
 }
 
 .form-control-feedback {
@@ -3766,7 +3766,7 @@ select[multiple].input-lg {
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    -ms-touch-action: manipulation;
+    /*-ms-touch-action: manipulation;*/
     touch-action: manipulation;
     cursor: pointer;
     -webkit-user-select: none;
@@ -3784,8 +3784,8 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
+    /*outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;*/
     outline-offset: -2px;
 }
 
@@ -4366,7 +4366,7 @@ tbody.collapse.in {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, .15);
+    /*border: 1px solid rgba(0, 0, 0, .15);*/
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
@@ -4609,7 +4609,7 @@ tbody.collapse.in {
 
 .btn-lg .caret {
     border-width: 5px 5px 0;
-    border-bottom-width: 0;
+    /*border-bottom-width: 0;*/
 }
 
 .dropup .btn-lg .caret {
@@ -5308,7 +5308,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-nav {
-    margin: 7.5px -15px;
+    margin: 7px -15px;
 }
 
 .navbar-nav > li > a {
@@ -7207,7 +7207,7 @@ button.close {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #999;
-    border: 1px solid rgba(0, 0, 0, .2);
+    /*border: 1px solid rgba(0, 0, 0, .2);*/
     border-radius: 6px;
     outline: 0;
     -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
@@ -7311,7 +7311,7 @@ button.close {
     font-style: normal;
     font-weight: normal;
     line-height: 1.42857143;
-    text-align: left;
+    /*text-align: left;*/
     text-align: start;
     text-decoration: none;
     text-shadow: none;
@@ -7446,7 +7446,7 @@ button.close {
     font-style: normal;
     font-weight: normal;
     line-height: 1.42857143;
-    text-align: left;
+    /*text-align: left;*/
     text-align: start;
     text-decoration: none;
     text-shadow: none;
@@ -7460,7 +7460,7 @@ button.close {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, .2);
+    /*border: 1px solid rgba(0, 0, 0, .2);*/
     border-radius: 6px;
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
@@ -7607,7 +7607,7 @@ button.close {
     line-height: 1;
 }
 
-@media all and (transform-3d), (-webkit-transform-3d) {
+@media all /*and (transform-3d), (-webkit-transform-3d)*/ {
     .carousel-inner > .item {
         -webkit-transition: -webkit-transform .6s ease-in-out;
         -o-transition: -o-transform .6s ease-in-out;
@@ -7941,9 +7941,9 @@ button.close {
     position: fixed;
 }
 
-@-ms-viewport {
+/*@-ms-viewport {
     width: device-width;
-}
+}*/
 
 .visible-xs,
 .visible-sm,
@@ -8242,7 +8242,9 @@ h1, h2, h3, h4, h5, h6 {
 #form_enter a,
 #form_registration a {
     display: none;
-    padding-left: 10%;
+    padding-left: 3%;
+    margin-top: 7px;
+    position: absolute;
 }
 
 #tablInkassator,
@@ -8255,4 +8257,10 @@ h1, h2, h3, h4, h5, h6 {
     margin: auto;
     width: 40%;
     display: none;
+}
+
+#formAddInkassator .input-group,
+#formAddCar .input-group,
+#form_registration .input-group{
+    padding: 3px;
 }
