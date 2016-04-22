@@ -8239,12 +8239,13 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
 }
 
-#form_enter a,
-#form_registration a {
+#form_enter label,
+#form_registration label{
     display: none;
     padding-left: 3%;
     margin-top: 7px;
     position: absolute;
+    color: #5584AE;
 }
 
 #tablInkassator,

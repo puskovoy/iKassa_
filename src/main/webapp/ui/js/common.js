@@ -93,28 +93,6 @@ function addCar() {
     });
 }
 
-function registration(btn) {
-    if (validation()) {
-        var user = document.getElementById("userName").value;
-        var login = document.getElementById("userID").value;
-        var email = document.getElementById("userEmail").value;
-        var address = document.getElementById("userAddress").value;
-        var password = document.getElementById("userPassword").value;
-
-        $("#" + btn.id).append("  <i class='fa fa-spinner fa-spin'>");
-        useAjax("reg", {
-            name: user,
-            login: login,
-            email: email,
-            address: address,
-            password: password
-        }, function valid() {
-            var url = "/startPage.html";
-            $(location).attr('href', url);
-        });
-    }
-}
-
 function Login(btn) {
     var user = document.getElementById("user_name").value;
     var password = document.getElementById("user_password").value;
@@ -148,20 +126,21 @@ function useAjax(type, data, callBack) {
 function validateUsername(fld, mx, my) {
     var error = "";
     var illegalChars = /\W/; // allow letters, numbers, and underscores
+    console.log('проверяем логин');
     if (fld.value == "") {
-        error = "You didn't enter a username.";
+        error = "Вы не указали логин пользователя.";
         console.log(error);
-        msgErr(error,"bad_password");
+        msgToLabal(error, "bad_password");
         return false;
     } else if ((fld.value.length < mx) || (fld.value.length > my)) {
-        error = "The username is the wrong length / length be between " + mx + " to " + my;
+        error = "Укажите длинну логина в пределах от " + mx + " до " + my + " символов";
         console.log(error);
-        msgErr(error,"bad_password");
+        msgToLabal(error, "bad_password");
         return false;
     } else if (illegalChars.test(fld.value)) {
-        error = "The username contains illegal characters.";
+        error = "Логин пользователя содержит не верные символы.";
         console.log(error);
-        msgErr(error,"bad_password");
+        msgToLabal(error, "bad_password");
         return false;
     }
     return true;
@@ -169,44 +148,74 @@ function validateUsername(fld, mx, my) {
 function validatePassword(fld, mx, my) {
     var error = "";
     var illegalChars = /[\W_]/; // allow only letters and numbers
+    console.log('проверяем пароль');
     if (fld.value == "") {
-        error = "You didn't enter a password.\n";
+        error = "Вы не уазали пароль";
         console.log(error);
-        msgErr(error,"bad_password");
+        msgToLabal(error, "bad_password");
         return false;
     } else if ((fld.value.length < 7) || (fld.value.length > 15)) {
-        error = "The password is the wrong length / length be between " + mx + " to " + my;
+        error = "Укажите длинну пароля в пределах от " + mx + " до " + my + " символов";
         console.log(error);
-        msgErr(error,"bad_password");
+        msgToLabal(error, "bad_password");
         return false;
     } else if (illegalChars.test(fld.value)) {
-        error = "The password contains illegal characters.";
+        error = "Пароль содержит не верные символы.";
         console.log(error);
-        msgErr(error,"bad_password");
+        msgToLabal(error, "bad_password");
         return false;
     } else if ((fld.value.search(/[a-zA-Z]+/) == -1) || (fld.value.search(/[0-9]+/) == -1)) {
-        error = "The password must contain at least one numeral.";
+        error = "Последний символ пароля должен содержать цифру";
         console.log(error);
-        msgErr(error,"bad_password");
+        msgToLabal(error, "bad_password");
         return false;
     }
+    var user = document.getElementById("userName").value;
+    var login = document.getElementById("userID").value;
+    var email = document.getElementById("userEmail").value;
+    var address = document.getElementById("userAddress").value;
+    var password = document.getElementById("userPassword").value;
+    var buton = $("#btn_reg");
+
+    console.log('start registration');
+    buton.append("  <i class='fa fa-spinner fa-spin'>");
+    useAjax("reg", {
+        name: user,
+        login: login,
+        email: email,
+        address: address,
+        password: password
+    }, function valid() {
+        var url = "/startPage.html";
+        $(location).attr('href', url);
+    });
+    buton.html('Регистрация');
     return true;
 }
 function allLetter(uname) {
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[А-Яа-яA-Za-z]+$/;
+    var error = "";
+    console.log('проверяем имя пользователя');
     if (uname.value.match(letters)) {
         return true;
     } else {
-        console.log('Username must have alphabet characters only');
-        msgErr(error,"bad_password");
+        error = 'Не верный символ в имени пользователя.';
+        console.log(error);
+        msgToLabal(error, "bad_password");
         return false;
     }
 }
 function validateEmail(email) {
-    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (!filter.test(email.value)) {
-        console.log('Please provide a valid email address');
-        msgErr(error,"bad_password");
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var error = "";
+    console.log('проверяе мыло');
+    if (email.value.match(mailformat)) {
+        return true;
+    }
+    else {
+        error = 'Указан не верный адрес электронной почты.';
+        console.log(error);
+        msgToLabal(error, "bad_password");
         return false;
     }
 }
@@ -215,18 +224,19 @@ function validation() {
     var uname = document.getElementById("userName");
     var uemail = document.getElementById("userEmail");
     var passid = document.getElementById("userPassword");
+    console.log('валидация');
     if (validateUsername(uid, 5, 12)) {
-        if (validatePassword(passid, 7, 12)) {
-            if (allLetter(uname)) {
-                if (validateEmail(uemail)) {
+        if (allLetter(uname)) {
+            if (validateEmail(uemail)) {
+                if (validatePassword(passid, 7, 12)) {
                 }
             }
         }
     }
     return false;
 }
-function msgErr(msg,fld) {
-    var div = $("#"+fld);
+function msgToLabal(msg, label) {
+    var div = $("#" + label);
     div.html(msg);
     div.show();
 }

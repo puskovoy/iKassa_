@@ -82,12 +82,8 @@
         </div>
     </div>
     <!--Стрелки переключения слайда-->
-    <a href="#carousel" class="left carousel-control" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a href="#carousel" class="right carousel-control" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
+    <a href="#carousel" class="left carousel-control" data-slide="prev"></a>
+    <a href="#carousel" class="right carousel-control" data-slide="next"></a>
 </div>
 <div class="container" id="name_company">
     <div class="row">
@@ -247,8 +243,8 @@
         <input type="password" class="form-control" id="userPassword" placeholder="User password"
                aria-describedby="sizing-addon2" required>
     </div>
-    <a href="" id="bad_password">Сообщение об ошибке!</a>
-    <button onclick="registration(this)" id="btn_reg" class="btn btn-success pull-right">Регистрация</button>
+    <label id="bad_password">Сообщение об ошибке!</label>
+    <button onclick="validation()" id="btn_reg" class="btn btn-success pull-right">Регистрация</button>
 </div>
 <!--Форма входа-->
 <p>
@@ -266,7 +262,7 @@
                aria-describedby="sizing-addon2" required>
     </div>
     <br>
-    <a href="" id="bad_login">Указан неправильный логин или пароль</a>
+    <label id="bad_login">Сообщение об ошибке!</label>
     <button onclick="Login(this)" id="btn_log"
             class="btn btn-success pull-right">Войти
     </button>
