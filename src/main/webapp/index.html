@@ -244,26 +244,26 @@
                aria-describedby="sizing-addon2" required>
     </div>
     <label id="bad_password">Сообщение об ошибке!</label>
-    <button onclick="validation()" id="btn_reg" class="btn btn-success pull-right">Регистрация</button>
+    <button onclick="validRegistration()" id="btn_reg" class="btn btn-success pull-right">Регистрация</button>
 </div>
 <!--Форма входа-->
 <p>
 <div class="container" id="form_enter">
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i> </span>
-        <input type="text" value="admin" class="form-control" id="user_name" placeholder="Username"
+        <input type="text" value="admin" class="form-control" id="userLogin" placeholder="Username"
                aria-describedby="sizing-addon2"
                required>
     </div>
     <br>
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-        <input type="password" value="admin" class="form-control" id="user_password" placeholder="Userpassword"
+        <input type="password" value="admin" class="form-control" id="userPasswordLogin" placeholder="Userpassword"
                aria-describedby="sizing-addon2" required>
     </div>
     <br>
     <label id="bad_login">Сообщение об ошибке!</label>
-    <button onclick="Login(this)" id="btn_log"
+    <button onclick="validLogin()" id="btn_log"
             class="btn btn-success pull-right">Войти
     </button>
 </div>

@@ -2,6 +2,7 @@ package com.iKassa.testing;
 
 import com.iKassa.entity.*;
 import com.iKassa.util.Crud;
+import com.iKassa.util.Validation;
 import org.json.JSONObject;
 import org.junit.Test;
 
@@ -464,6 +465,11 @@ public class CarTest {
         //Получние с БД Citroen‎
         Car carFromDB = (Car) service.get(car, car.getId());
         System.out.println(carFromDB);
+
+    }
+    @Test
+    public void testLogin() throws Exception {
+        Validation.checkUser("aaaaaa","aaaaaaa7");
 
     }
 }
