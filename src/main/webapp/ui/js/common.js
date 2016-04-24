@@ -106,108 +106,125 @@ function useAjax(type, data, callBack) {
     });
 }
 /*validating*/
-function validateUserLogin(fld, lblMsg, lblFocus, mx, my) {
-    var error = "";
+function validateUserLogin(fld, lbl, mx, my) {
+    var errorMsg = "";
     var illegalChars = /\W/; // allow letters, numbers, and underscores
     console.log('проверяем логин');
-    if (fld.length == "") {
-        error = "Вы не указали логин пользователя.";
-        console.log(error);
-        msgToLabal(error, lblMsg);
-        lblFocus.focuse;
+    if (fld.val().length == "") {
+        errorMsg = "Вы не указали логин пользователя.";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, lbl);
+        fld.focus();
         return false;
-    } else if ((fld.length < mx) || (fld.length > my)) {
-        error = "Укажите длинну логина в пределах от " + mx + " до " + my + " символов";
-        console.log(error);
-        msgToLabal(error, lblMsg);
+    } else if ((fld.val().length < mx) || (fld.val().length > my)) {
+        errorMsg = "Укажите длинну логина в пределах от " + mx + " до " + my + " символов";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, lbl);
+        fld.focus();
         return false;
-    } else if (illegalChars.test(fld.value)) {
-        error = "Логин пользователя содержит не верные символы.";
-        console.log(error);
-        msgToLabal(error, lblMsg);
+    } else if (illegalChars.test(fld.val())) {
+        errorMsg = "Логин пользователя содержит не верные символы.";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, lbl);
+        fld.focus();
         return false;
     }
     return true;
 }
 function validatePassword(fld, lbl, mx, my) {
-    var error = "";
+    var errorMsg = "";
     var illegalChars = /[\W_]/; // allow only letters and numbers
     console.log('проверяем пароль');
-    if (fld.length == "") {
-        error = "Вы не уазали пароль";
-        console.log(error);
-        msgToLabal(error, lbl);
+    if (fld.val().length == "") {
+        errorMsg = "Вы не уазали пароль";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, lbl);
+        fld.focus();
         return false;
-    } else if ((fld.length < 7) || (fld.length > 15)) {
-        error = "Укажите длинну пароля в пределах от " + mx + " до " + my + " символов";
-        console.log(error);
-        msgToLabal(error, lbl);
+    } else if ((fld.val().length < 7) || (fld.val().length > 15)) {
+        errorMsg = "Укажите длинну пароля в пределах от " + mx + " до " + my + " символов";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, lbl);
+        fld.focus();
         return false;
-    } else if (illegalChars.test(fld)) {
-        error = "Пароль содержит не верные символы.";
-        console.log(error);
-        msgToLabal(error, lbl);
+    } else if (illegalChars.test(fld.val())) {
+        errorMsg = "Пароль содержит не верные символы.";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, lbl);
+        fld.focus();
         return false;
-    } else if ((fld.search(/[a-zA-Z]+/) == -1) || (fld.search(/[0-9]+/) == -1)) {
-        error = "Последний символ пароля должен содержать цифру";
-        console.log(error);
-        msgToLabal(error, lbl);
+    } else if ((fld.val().search(/[a-zA-Z]+/) == -1) || (fld.val().search(/[0-9]+/) == -1)) {
+        errorMsg = "Последний символ пароля должен содержать цифру";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, lbl);
+        fld.focus();
         return false;
     }
     return true;
 }
-function allLetter(uname) {
-    var letters = /^[А-Яа-яA-Za-z]+$/;
-    var error = "";
-    var msg = $("#bad_password");
+function allLetter(userName, msgLbl) {
+    var letters = /^[А-Яа-яA-Za-z\s]+$/;
+    var errorMsg = "";
     console.log('проверяем имя пользователя');
-    if (uname.match(letters)) {
+    if (userName.val().length == "") {
+        errorMsg = "Вы не указали имя пользователя.";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, msgLbl);
+        userName.focus();
+        return false;
+    } else if (userName.val().match(letters)) {
         return true;
     } else {
-        error = 'Не верный символ в имени пользователя.';
-        console.log(error);
-        msgToLabal(error, msg);
+        errorMsg = 'Не верный символ в имени пользователя.';
+        console.log(errorMsg);
+        msgToLabal(errorMsg, msgLbl);
+        userName.focus();
         return false;
     }
 }
-function validateEmail(email) {
+function validateEmail(email, msgLbl) {
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var error = "";
-    var msg = $("#bad_password");
+    var errorMsg = "";
     console.log('проверяе мыло');
-    if (email.match(mailformat)) {
+    if (email.val().length == "") {
+        errorMsg = "Вы не указали email.";
+        console.log(errorMsg);
+        msgToLabal(errorMsg, msgLbl);
+        email.focus();
+        return false;
+    } else if (email.val().match(mailformat)) {
         return true;
     }
     else {
-        error = 'Указан не верный адрес электронной почты.';
-        console.log(error);
-        msgToLabal(error, msg);
+        errorMsg = 'Указан не верный адрес электронной почты.';
+        console.log(errorMsg);
+        msgToLabal(errorMsg, msgLbl);
+        email.focus();
         return false;
     }
 }
 function validRegistration() {
-    var user = document.getElementById("userName").value;
-    var userFld = $("#userName");
-    var login = document.getElementById("userID").value;
-    var email = document.getElementById("userEmail").value;
-    var address = document.getElementById("userAddress").value;
-    var password = document.getElementById("userPassword").value;
-    var msg = $("#bad_password");
-    var buton = $("#btn_reg");
+    var user = $("#userName");
+    var login = $("#userID");
+    var email = $("#userEmail");
+    var address = $("#userAddress");
+    var password = $("#userPassword");
+    var msgLbl = $("#errorMsgRegistration");
+    var buton = $("#btnRegistration");
     console.log('регистрация валидация');
-    console.log(userFld);
-    if (validateUserLogin(login, msg, userFld, 3, 12)) {
-        if (allLetter(user)) {
-            if (validateEmail(email)) {
-                if (validatePassword(password, 7, 12)) {
+    if (validateUserLogin(login, msgLbl, 3, 12)) {
+        if (allLetter(user, msgLbl)) {
+            if (validateEmail(email, msgLbl)) {
+                if (validatePassword(password, msgLbl, 7, 12)) {
                     console.log('start registration');
                     buton.append("  <i class='fa fa-spinner fa-spin'>");
+                    msgLbl.html('');
                     useAjax("reg", {
-                        name: user,
-                        login: login,
-                        email: email,
-                        address: address,
-                        password: password
+                        name: user.val(),
+                        login: login.val(),
+                        email: email.val(),
+                        address: address.val(),
+                        password: password.val()
                     }, function valid() {
                         var url = "/startPage.html";
                         $(location).attr('href', url);
@@ -220,25 +237,23 @@ function validRegistration() {
     return false;
 }
 function validLogin() {
-    var user = document.getElementById("userLogin").value;
-    var password = document.getElementById("userPasswordLogin").value;
-    var msg = $("#bad_login");
-    var btn = $("#btn_log");
+    var user = $("#userLogin");
+    var password = $("#userPasswordLogin");
+    var msgLbl = $("#errorMsgLogin");
+    var btn = $("#btnLogin");
     console.log('логин валидация');
-    console.log(user);
-    console.log(password);
-    if (validateUserLogin(user, msg, 3, 12)) {
-        if (validatePassword(password, msg, 7, 12)) {
+    if (validateUserLogin(user, msgLbl, 3, 12)) {
+        if (validatePassword(password, msgLbl, 7, 12)) {
             console.log('start login');
             btn.append("  <i class='fa fa-spinner fa-spin'>");
-            msg.html('');
-            useAjax("login", {name: user, password: password}, function valid() {
+            msgLbl.html('');
+            useAjax("login", {name: user.val(), password: password.val()}, function valid() {
                 var isValid = danni.isValid;
                 if (isValid) {
                     var url = "/startPage.html";
                     $(location).attr('href', url);
                 } else {
-                    msgToLabal('Указан не верный логин или пароль!', msg);
+                    msgToLabal('Указан не верный логин или пароль!', msgLbl);
                     btn.html("Вход");
                 }
             })
