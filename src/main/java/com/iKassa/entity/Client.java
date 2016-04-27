@@ -13,8 +13,18 @@ public class Client extends Model{
     private String name;
     @Column(name = "adres", length = 100)
     private String adres;
-    @Column(name = "timevisit", length = 5)
+    @Column(name = "telefon", length = 60)
+    private String telefon;
+    @Column(name = "rahunok", length = 20)
+    private String rahunok;
+    @Column(name = "vihodnoi", length = 50)
+    private String vihodnoi;
+    @Column(name = "timeStopWork", length = 5)
+    private int timeStopWork;
+    @Column(name = "timeVisit", length = 5)
     private int timeVisit;
+    @Column(name = "timevisit", length = 5)
+    private int timeVisitSund;
     @Column(name = "kodNumber", length = 5)
     private int kodNumber;
     @ManyToMany(mappedBy = "clients")
@@ -42,14 +52,6 @@ public class Client extends Model{
 
     public void setAdres(String adres) {
         this.adres = adres;
-    }
-
-    public int getTimeVisit() {
-        return timeVisit;
-    }
-
-    public void setTimeVisit(int timeVisit) {
-        this.timeVisit = timeVisit;
     }
 
     public int getKodNumber() {
@@ -84,14 +86,67 @@ public class Client extends Model{
         this.card = card;
     }
 
+    public String getVihodnoi() {
+        return vihodnoi;
+    }
+
+    public void setVihodnoi(String vihodnoi) {
+        this.vihodnoi = vihodnoi;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public String getRahunok() {
+        return rahunok;
+    }
+
+    public void setRahunok(String rahunok) {
+        this.rahunok = rahunok;
+    }
+
+    public int getTimeStopWork() {
+        return timeStopWork;
+    }
+
+    public void setTimeStopWork(int timeStopWork) {
+        this.timeStopWork = timeStopWork;
+    }
+
+    public int getTimeVisit() {
+        return timeVisit;
+    }
+
+    public void setTimeVisit(int timeVisit) {
+        this.timeVisit = timeVisit;
+    }
+
+    public int getTimeVisitSund() {
+        return timeVisitSund;
+    }
+
+    public void setTimeVisitSund(int timeVisitSund) {
+        this.timeVisitSund = timeVisitSund;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "name='" + name + '\'' +
+                ", vihodnoi='" + vihodnoi + '\'' +
                 ", adres='" + adres + '\'' +
-                ", timeVisit=" + timeVisit +
+                ", telefon='" + telefon + '\'' +
+                ", rahunok='" + rahunok + '\'' +
+                ", timeStopWork='" + timeStopWork + '\'' +
+                ", timeVisit='" + timeVisit + '\'' +
+                ", timeVisitSund=" + timeVisitSund +
                 ", kodNumber=" + kodNumber +
-                /*", route=" + route +*/
+                ", route=" + route +
                 ", bag=" + bag +
                 ", card=" + card +
                 '}';

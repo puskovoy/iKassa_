@@ -210,41 +210,48 @@
 <!--Форма регистрации-->
 <p>
 <div class="container" id="form_registration">
-    <h4>РЕГИСТРАЦИЯ ПОЛЬЗОВАТЕЛЯ</h4>
-    <div class="input-group">
+    <div class="row">
+        <h4>РЕГИСТРАЦИЯ ПОЛЬЗОВАТЕЛЯ</h4>
+        <div class="input-group">
         <span class="input-group-addon"><i
                 class="fa fa-user" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="userID" placeholder="Login name"
-               aria-describedby="sizing-addon2" required>
-    </div>
-    <div class="input-group">
+            <input type="text" class="form-control" id="userID" placeholder="Login name"
+                   aria-describedby="sizing-addon2" required>
+        </div>
+        <div class="input-group">
         <span class="input-group-addon"><i
                 class="fa fa-user" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="userName" placeholder="User name"
-               aria-describedby="sizing-addon2" required>
-    </div>
-    <div class="input-group">
+            <input type="text" class="form-control" id="userName" placeholder="User name"
+                   aria-describedby="sizing-addon2" required>
+        </div>
+        <div class="input-group">
         <span class="input-group-addon"><i
                 class="fa fa-user" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="userAddress" placeholder="User address"
-               aria-describedby="sizing-addon2" required>
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon">@</span>
-        <input type="email" class="form-control" id="userEmail" placeholder="User email"
-               aria-describedby="sizing-addon2" required>
-    </div>
-    <div class="input-group">
+            <input type="text" class="form-control" id="userAddress" placeholder="User address"
+                   aria-describedby="sizing-addon2" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="email" class="form-control" id="userEmail" placeholder="User email"
+                   aria-describedby="sizing-addon2" required>
+        </div>
+        <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i>
         </span>
-        <input type="password" class="form-control" id="userPassword" placeholder="User password"
-               aria-describedby="sizing-addon2" required>
+            <input type="password" class="form-control" id="userPassword" placeholder="User password"
+                   aria-describedby="sizing-addon2" required>
+        </div>
+        <div class="col-md-8">
+            <label id="errorMsgRegistration">Сообщение об ошибке!</label>
+        </div>
+        <div class="col-md-4">
+            <button onclick="validRegistration()" id="btnRegistration" class="btn btn-success pull-right">Регистрация
+            </button>
+        </div>
     </div>
-    <label id="errorMsgRegistration">Сообщение об ошибке!</label>
-    <button onclick="validRegistration()" id="btnRegistration" class="btn btn-success pull-right">Регистрация</button>
 </div>
 <!--Форма входа-->
 <p>

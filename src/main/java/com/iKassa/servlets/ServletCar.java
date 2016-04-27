@@ -23,12 +23,13 @@ public class ServletCar extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=windows-1251");
         PrintWriter out = resp.getWriter();
         Crud crud = new Crud();
         Car car = new Car();
 
         if (req.getParameter("name") == null) {
-            System.out.println("Загружаю авто");
+            System.out.println("Загружаю авто!");
             try {
                 out.println(getAllCar());
                 out.close();

@@ -61,6 +61,7 @@ function getCar() {
                 "</td><td>" + danni[i].number +
                 "</td><td>" + danni[i].date +
                 "</td></tr>";
+            console.log(danni[i].name);
             $('#bodyTablCar').append(row);
         }
     });
@@ -106,55 +107,23 @@ function useAjax(type, data, callBack) {
     });
 }
 /*validating*/
-function validateUserLogin(fld, lbl, mx, my) {
+function validate(fld, lbl, mx, my) {
     var errorMsg = "";
-    var illegalChars = /\W/; // allow letters, numbers, and underscores
-    console.log('проверяем логин');
+    var illegalChars = /[\W_]/; // allow only letters and numbers
     if (fld.val().length == "") {
-        errorMsg = "Вы не указали логин пользователя.";
+        errorMsg = "Вы ни чего не уазали";
         console.log(errorMsg);
         msgToLabal(errorMsg, lbl);
         fld.focus();
         return false;
     } else if ((fld.val().length < mx) || (fld.val().length > my)) {
-        errorMsg = "Укажите длинну логина в пределах от " + mx + " до " + my + " символов";
+        errorMsg = "Колличество символов может быть в пределах от " + mx + " до " + my + " символов";
         console.log(errorMsg);
         msgToLabal(errorMsg, lbl);
         fld.focus();
         return false;
     } else if (illegalChars.test(fld.val())) {
-        errorMsg = "Логин пользователя содержит не верные символы.";
-        console.log(errorMsg);
-        msgToLabal(errorMsg, lbl);
-        fld.focus();
-        return false;
-    }
-    return true;
-}
-function validatePassword(fld, lbl, mx, my) {
-    var errorMsg = "";
-    var illegalChars = /[\W_]/; // allow only letters and numbers
-    console.log('проверяем пароль');
-    if (fld.val().length == "") {
-        errorMsg = "Вы не уазали пароль";
-        console.log(errorMsg);
-        msgToLabal(errorMsg, lbl);
-        fld.focus();
-        return false;
-    } else if ((fld.val().length < 7) || (fld.val().length > 15)) {
-        errorMsg = "Укажите длинну пароля в пределах от " + mx + " до " + my + " символов";
-        console.log(errorMsg);
-        msgToLabal(errorMsg, lbl);
-        fld.focus();
-        return false;
-    } else if (illegalChars.test(fld.val())) {
-        errorMsg = "Пароль содержит не верные символы.";
-        console.log(errorMsg);
-        msgToLabal(errorMsg, lbl);
-        fld.focus();
-        return false;
-    } else if ((fld.val().search(/[a-zA-Z]+/) == -1) || (fld.val().search(/[0-9]+/) == -1)) {
-        errorMsg = "Последний символ пароля должен содержать цифру";
+        errorMsg = "Указаны не верные символы.";
         console.log(errorMsg);
         msgToLabal(errorMsg, lbl);
         fld.focus();
@@ -187,7 +156,7 @@ function validateEmail(email, msgLbl) {
     var errorMsg = "";
     console.log('проверяе мыло');
     if (email.val().length == "") {
-        errorMsg = "Вы не указали email.";
+        errorMsg = "Вы не указали адрес электронной почты.";
         console.log(errorMsg);
         msgToLabal(errorMsg, msgLbl);
         email.focus();
@@ -212,10 +181,10 @@ function validRegistration() {
     var msgLbl = $("#errorMsgRegistration");
     var buton = $("#btnRegistration");
     console.log('регистрация валидация');
-    if (validateUserLogin(login, msgLbl, 3, 12)) {
+    if (validate(login, msgLbl, 3, 12)) {
         if (allLetter(user, msgLbl)) {
             if (validateEmail(email, msgLbl)) {
-                if (validatePassword(password, msgLbl, 7, 12)) {
+                if (validate(password, msgLbl, 7, 12)) {
                     console.log('start registration');
                     buton.append("  <i class='fa fa-spinner fa-spin'>");
                     msgLbl.html('');
@@ -242,8 +211,8 @@ function validLogin() {
     var msgLbl = $("#errorMsgLogin");
     var btn = $("#btnLogin");
     console.log('логин валидация');
-    if (validateUserLogin(user, msgLbl, 3, 12)) {
-        if (validatePassword(password, msgLbl, 7, 12)) {
+    if (validate(user, msgLbl, 3, 12)) {
+        if (validate(password, msgLbl, 7, 12)) {
             console.log('start login');
             btn.append("  <i class='fa fa-spinner fa-spin'>");
             msgLbl.html('');

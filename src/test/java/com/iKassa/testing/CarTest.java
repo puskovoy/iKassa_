@@ -355,7 +355,7 @@ public class CarTest {
         System.out.println(car2);
     }
 
-    @Test
+    /*@Test
     public void testGetAllUser() {
         //Создаем автомобиль для записи в БД
         User user1 = new User();
@@ -377,13 +377,13 @@ public class CarTest {
         service.add(user2);
         service.add(user3);
         //Получаем все авто с БД
-       /* List<Object> users = service.getAll(User.class);
+       *//* List<Object> users = service.getAll(User.class);
 
         //Выводим полученый список авто
         for (Object c : users) {
             System.out.println(c);
-        }*/
-    }
+        }*//*
+    }*/
 
     @Test
     public void testGetAllSviaz() {
